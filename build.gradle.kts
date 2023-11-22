@@ -37,6 +37,7 @@ dependencies {
     
     implementation("dev.langchain4j:langchain4j:0.24.0")
     implementation("dev.langchain4j:langchain4j-open-ai:0.24.0")
+    implementation("dev.langchain4j:langchain4j-ollama:0.24.0")
     implementation("org.mapdb:mapdb:3.0.9")
 
     //test

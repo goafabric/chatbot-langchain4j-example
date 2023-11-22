@@ -1,6 +1,5 @@
 package org.goafabric.chatbot.logic;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +17,8 @@ public class ChatBotLogic {
     }
 
     private void prompt(String prompt) {
-        ChatLanguageModel model = OpenAiChatModel.builder().apiKey("demo")
-                .timeout(ofSeconds(20)).build();
+        var model = OpenAiChatModel.builder().apiKey("demo").timeout(ofSeconds(20)).build();
+        //var model = OllamaLanguageModel.builder().build();
 
         log.info(prompt);
         log.info("thinking ...");

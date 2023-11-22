@@ -2,7 +2,6 @@ package org.goafabric.chatbot.logic;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import org.example.ApiKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class ChatBotLogic {
     }
 
     private void prompt(String prompt) {
-        ChatLanguageModel model = OpenAiChatModel.builder().apiKey(ApiKeys.OPENAI_API_KEY)
+        ChatLanguageModel model = OpenAiChatModel.builder().apiKey("demo")
                 .timeout(ofSeconds(20)).build();
 
         log.info(prompt);

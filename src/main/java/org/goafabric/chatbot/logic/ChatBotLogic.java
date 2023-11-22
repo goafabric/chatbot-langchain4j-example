@@ -1,5 +1,7 @@
 package org.goafabric.chatbot.logic;
 
+import dev.langchain4j.model.StreamingResponseHandler;
+import dev.langchain4j.model.ollama.OllamaStreamingLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,16 +14,49 @@ public class ChatBotLogic {
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     public void run() {
-        //prompt("Hello world!");
-        prompt("What is the meaning of life ?");
+        //promptOpenAi("How are you doing ?");
+        promptLama("How are you doing ?");
     }
 
-    private void prompt(String prompt) {
-        var model = OpenAiChatModel.builder().apiKey("demo").timeout(ofSeconds(20)).build();
-        //var model = OllamaLanguageModel.builder().build();
+    private void promptOpenAi(String prompt) {
+        var model = OpenAiChatModel.builder().apiKey("demo").timeout(ofSeconds(30)).build();
+        System.out.println("Calling remote chatgpt \uD83E\uDD16 with question:\n" + prompt + "\n");
+        System.out.println(model.generate(prompt));
 
-        log.info(prompt);
-        log.info("thinking ...");
-        log.info(model.generate(prompt));
+        /*
+        var model = OpenAiStreamingChatModel.builder().apiKey("demo").timeout(ofSeconds(30)).build();
+        System.out.println("Calling remote chatgpt \uD83E\uDD16 with question:\n" + prompt);
+
+        model.generate(prompt, new StreamingResponseHandler<>() {
+            @Override
+            public void onNext(String token) {
+                System.out.print(token);
+                if (token.contains(",") || token.contains(".")) { System.out.println(); }
+            }
+
+            @Override
+            public void onError(Throwable error) {}
+        });
+
+         */
     }
+
+    private void promptLama(String prompt) {
+        var model = OllamaStreamingLanguageModel.builder().baseUrl("http://localhost:11434").modelName("llama2")
+                .timeout(ofSeconds(30)).build();
+
+        System.out.println("Calling local llama \uD83E\uDD99 with question:\n" + prompt + "\n");
+
+        model.generate(prompt, new StreamingResponseHandler<>() {
+            @Override
+            public void onNext(String token) {
+                System.out.print(token);
+                if (token.contains(",") || token.contains(".")) { System.out.println(); }
+            }
+
+            @Override
+            public void onError(Throwable error) {}
+        });
+    }
+
 }

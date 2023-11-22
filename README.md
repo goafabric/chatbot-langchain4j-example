@@ -1,6 +1,8 @@
 # requirements
 - needs a local llama2 that can be downloaded from https://ollama.ai/
 - after download poke in "ollama run llama2", this will automatically download the smallest llama2 and open a chat console
+- launch Application Class
+- also has an example for remote chatgpt with the demo key
 
 # links
 https://github.com/langchain4j/langchain4j

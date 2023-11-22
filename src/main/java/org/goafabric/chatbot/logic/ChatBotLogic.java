@@ -14,8 +14,8 @@ public class ChatBotLogic {
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     public void run() {
-        //promptOpenAi("How are you doing ?");
-        promptLama("How are you doing ?");
+        promptOpenAi("What do you know about the airport orly in france ? Please as a short answer");
+        //promptLama("What do you know about the airport orly in france ? Please as a short answer");
     }
 
     private void promptOpenAi(String prompt) {

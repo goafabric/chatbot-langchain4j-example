@@ -18,7 +18,7 @@ public class AddressRepository {
         addresses = new ArrayList<>();
         addresses.add(new Address("1", "Evergreen Terrace 753", "Springfield"));
         addresses.add(new Address("2", "EverblueTerrace 753", "Springfield"));
-        addresses.add(new Address("3", "Croesus Street", "Shelbyille"));
+        addresses.add(new Address("3", "Croesus Street", "Shelbyville"));
     }
 
     @Tool
@@ -29,4 +29,12 @@ public class AddressRepository {
                 .orElseThrow(() -> new NoSuchElementException("Address with id '" + id + "' not found"));
     }
 
+
+    //@Tool
+    public Address findByCity(String city) {
+        return addresses.stream()
+                .filter(address -> address.city.toLowerCase().equals(city.toLowerCase()))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Address with city '" + city + "' not found"));
+    }
 }

@@ -1,4 +1,4 @@
-package org.example.myagent.ai;
+package org.example.myagent;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import static java.time.Duration.ofSeconds;
 
 @Configuration
-public class LanguageModelConfiguration {
+public class ModelConfiguration {
+
     @Bean
     ChatLanguageModel chatModel() {
         return OpenAiChatModel.builder().apiKey("demo")
@@ -33,10 +34,9 @@ public class LanguageModelConfiguration {
     }
 
     public interface DatabaseAgent {
-
         @SystemMessage({
                 "You are a database admin that can query the database for persons",
-                "The persons can be queried by firstname or lastname"
+                "The persons can be queried by firstname or lastname or city",
         })
         String chat(String userMessage);
     }

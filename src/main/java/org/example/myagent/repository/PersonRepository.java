@@ -1,6 +1,7 @@
 package org.example.myagent.repository;
 
 import dev.langchain4j.agent.tool.Tool;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -34,6 +35,18 @@ public class PersonRepository {
                 .filter(person -> person.lastName().toLowerCase().equals(lastName.toLowerCase()))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Person with lastName '" + lastName + "' not found"));
+    }
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Tool
+    public PersonRepository.Person findByCity(String city) {
+        var address = addressRepository.findByCity(city);
+        return persons.stream()
+                .filter(person -> person.personId.toLowerCase().equals(address.personId()))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Person not found"));
     }
 
 }

@@ -1,6 +1,5 @@
 package org.example.myagent;
 
-import org.example.myagent.ai.LanguageModelConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -24,28 +23,15 @@ public class Application {
     }
 
     @Bean
-    public ApplicationRunner applicationRunner (LanguageModelConfiguration.DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (ModelConfiguration.DatabaseAgent agent) {
         return args -> {
-            Scanner scanner = new Scanner(System.in);
-
+            var  scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("[User]: ");
-                String userMessage = scanner.nextLine();
-                String agentAnswer = agent.chat(userMessage);
+                var  agentAnswer = agent.chat(scanner.nextLine());
                 System.out.println("[Agent]; " + agentAnswer);
             }
         };
     }
-
-    /*
-    @Bean
-    public CommandLineRunner init(ApplicationContext context, PersonRepository repository) {
-        return args -> {
-            System.out.println((repository.findByFirstName("Bart").toString()));
-            System.out.println((repository.findByLastName("Simpson").toString()));
-        };
-    }
-    */
-
 
 }

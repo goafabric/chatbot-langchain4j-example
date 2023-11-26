@@ -40,6 +40,16 @@ public class CustomerSupportApplication {
                 .build();
     }
 
+    /*
+    @Bean
+    ChatLanguageModel chatLanguageModel() {
+        return OllamaLanguageModel.builder().baseUrl("http://localhost:11434")
+                .modelName("llama2")
+                .timeout(ofSeconds(30)).temperature(0.0).
+                build();
+    }
+     */
+
     @Bean
     CustomerSupportAgent customerSupportAgent(ChatLanguageModel chatLanguageModel,
                                               BookingTools bookingTools,

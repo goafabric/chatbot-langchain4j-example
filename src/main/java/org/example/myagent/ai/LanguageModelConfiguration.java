@@ -29,7 +29,6 @@ public class LanguageModelConfiguration {
                 .chatLanguageModel(chatLanguageModel)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
                 .tools(personRepository, addressRepository)
-                //.retriever(retriever)
                 .build();
     }
 

@@ -22,11 +22,11 @@ public class AddressRepository {
     }
 
     @Tool
-    public Address findByPersonId(String personId) {
+    public Address findById(String id) {
         return addresses.stream()
-                .filter(address -> address.personId.equals(personId))
+                .filter(address -> address.personId.equals(id))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Address with id '" + personId + "' not found"));
+                .orElseThrow(() -> new NoSuchElementException("Address with id '" + id + "' not found"));
     }
 
 }

@@ -20,7 +20,7 @@ public class AddressRepository {
         addresses.add(new Address("3", "Croesus Street", "Shelbyville"));
     }
 
-    @Tool //it is important to have a unique name here! if only findById, the model starts mixing things up
+    @Tool
     public Address findAddressById(String id) {
         return addresses.stream()
                 .filter(address -> address.personId.equals(id))

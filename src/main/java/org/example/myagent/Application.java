@@ -1,13 +1,21 @@
 package org.example.myagent;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
+import org.example.myagent.repository.AddressRepository;
+import org.example.myagent.repository.AllergyRepository;
+import org.example.myagent.repository.PersonRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Scanner;
+
+import static java.time.Duration.ofSeconds;
 
 
 /**
@@ -16,22 +24,54 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class Application {
-    private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);
     }
 
+    /*
+    I need to find bart
+    Can you give me his address
+    I need to find the person with allergies to peanuts
+    Which allergies to we have in shelbyville
+    */
+
     @Bean
-    public ApplicationRunner applicationRunner (ModelConfiguration.DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
         return args -> {
             var  scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("[User]: ");
-                var  agentAnswer = agent.chat(scanner.nextLine());
+                var agentAnswer = agent.chat(scanner.nextLine());
                 System.out.println("[Agent]; " + agentAnswer);
             }
         };
     }
 
+    @Bean
+    ChatLanguageModel chatModel() {
+        return OpenAiChatModel.builder().apiKey("demo")
+                .modelName("gpt-3.5-turbo")
+                .timeout(ofSeconds(30)).temperature(0.0)
+                .build();
+    }
+
+    @Bean
+    DatabaseAgent databaseAgent(ChatLanguageModel chatLanguageModel,
+                               PersonRepository personRepository, AddressRepository addressRepository, AllergyRepository allergyRepository) {
+        return AiServices.builder(DatabaseAgent.class)
+                .chatLanguageModel(chatLanguageModel)
+                .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
+                .tools(personRepository, addressRepository, allergyRepository)
+                .build();
+    }
+
+    public interface DatabaseAgent {
+        @SystemMessage({
+                "You are a database admin that can query the database for persons",
+                "The persons can be queried by firstname or lastname or city or allergy",
+        })
+        String chat(String userMessage);
+    }    
+    
 }

@@ -1,6 +1,6 @@
 package org.example.myagent;
 
-import org.example.myagent.ai.DatabaseAgent;
+import org.example.myagent.ai.LanguageModelConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -24,7 +24,7 @@ public class Application {
     }
 
     @Bean
-    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (LanguageModelConfiguration.DatabaseAgent agent) {
         return args -> {
             Scanner scanner = new Scanner(System.in);
 

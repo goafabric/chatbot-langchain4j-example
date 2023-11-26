@@ -4,6 +4,7 @@ import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
 import org.example.myagent.repository.AddressRepository;
 import org.example.myagent.repository.PersonRepository;
 import org.springframework.context.annotation.Bean;
@@ -30,5 +31,14 @@ public class LanguageModelConfiguration {
                 .tools(personRepository, addressRepository)
                 //.retriever(retriever)
                 .build();
+    }
+
+    public interface DatabaseAgent {
+
+        @SystemMessage({
+                "You are a database admin that can query the database for persons",
+                "The persons can be queried by firstname or lastname"
+        })
+        String chat(String userMessage);
     }
 }

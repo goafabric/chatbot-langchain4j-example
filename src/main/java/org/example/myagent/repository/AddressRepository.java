@@ -22,7 +22,7 @@ public class AddressRepository {
     }
 
     @Tool
-    public Address findAddressByPersonId(String personId) {
+    public Address findByPersonId(String personId) {
         return addresses.stream()
                 .filter(address -> address.personId.equals(personId))
                 .findFirst()

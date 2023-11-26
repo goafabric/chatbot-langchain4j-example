@@ -1,4 +1,4 @@
-package org.goafabric.agent;
+package org.example.customeragent;
 
 public class BookingCannotBeCancelledException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.div;
 
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.UserMessage;

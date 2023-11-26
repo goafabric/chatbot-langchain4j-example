@@ -1,4 +1,4 @@
-package org.goafabric.agent;
+package org.example.customeragent;
 
 import dev.langchain4j.agent.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;

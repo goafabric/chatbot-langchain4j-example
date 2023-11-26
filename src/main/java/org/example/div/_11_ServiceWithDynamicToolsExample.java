@@ -1,4 +1,4 @@
-package org.example;
+package org.example.div;
 
 import dev.langchain4j.code.Judge0JavaScriptExecutionTool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;

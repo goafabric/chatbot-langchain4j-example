@@ -1,13 +1,14 @@
 package org.example.myagent;
 
-import org.example.myagent.repository.PersonRepository;
+import org.example.myagent.ai.DatabaseAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Scanner;
 
 
 /**
@@ -23,12 +24,28 @@ public class Application {
     }
 
     @Bean
+    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
+        return args -> {
+            Scanner scanner = new Scanner(System.in);
+
+            while (true) {
+                System.out.print("[User]: ");
+                String userMessage = scanner.nextLine();
+                String agentAnswer = agent.chat(userMessage);
+                System.out.println("[Agent]; " + agentAnswer);
+            }
+        };
+    }
+
+    /*
+    @Bean
     public CommandLineRunner init(ApplicationContext context, PersonRepository repository) {
         return args -> {
             System.out.println((repository.findByFirstName("Bart").toString()));
             System.out.println((repository.findByLastName("Simpson").toString()));
         };
     }
+    */
 
 
 }

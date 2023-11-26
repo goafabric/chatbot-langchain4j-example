@@ -49,4 +49,17 @@ public class PersonRepository {
                 .orElseThrow(() -> new NoSuchElementException("Person not found"));
     }
 
+    @Autowired
+    private AllergyRepository allergyRepository;
+
+    @Tool
+    public PersonRepository.Person findByAllergy(String description) {
+        var allergy = allergyRepository.findByAllergy(description);
+
+        return persons.stream()
+                .filter(person -> person.personId.toLowerCase().equals(allergy.personId()))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Person not found"));
+    }
+
 }

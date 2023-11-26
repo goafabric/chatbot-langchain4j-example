@@ -13,7 +13,6 @@ public class AddressRepository {
 
     private final List<Address> addresses;
 
-
     public AddressRepository() {
         addresses = new ArrayList<>();
         addresses.add(new Address("1", "Evergreen Terrace 753", "Springfield"));

@@ -6,6 +6,7 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 import org.example.myagent.repository.AddressRepository;
+import org.example.myagent.repository.AllergyRepository;
 import org.example.myagent.repository.PersonRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,18 +26,18 @@ public class ModelConfiguration {
 
     @Bean
     DatabaseAgent databaseAgent(ChatLanguageModel chatLanguageModel,
-                                PersonRepository personRepository, AddressRepository addressRepository) {
+                                PersonRepository personRepository, AddressRepository addressRepository, AllergyRepository allergyRepository) {
         return AiServices.builder(DatabaseAgent.class)
                 .chatLanguageModel(chatLanguageModel)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
-                .tools(personRepository, addressRepository)
+                .tools(personRepository, addressRepository, allergyRepository)
                 .build();
     }
 
     public interface DatabaseAgent {
         @SystemMessage({
                 "You are a database admin that can query the database for persons",
-                "The persons can be queried by firstname or lastname or city",
+                "The persons can be queried by firstname or lastname or city or allergy",
         })
         String chat(String userMessage);
     }

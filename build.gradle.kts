@@ -39,6 +39,8 @@ dependencies {
     implementation("dev.langchain4j:langchain4j-open-ai:0.24.0")
     implementation("dev.langchain4j:langchain4j-ollama:0.24.0")
     implementation("org.mapdb:mapdb:3.0.9")
+    implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:0.24.0")
+
 
     //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

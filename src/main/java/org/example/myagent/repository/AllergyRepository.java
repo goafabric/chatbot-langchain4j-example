@@ -20,8 +20,8 @@ public class AllergyRepository {
         allergies.add(new Allergy("3", "bees"));
     }
 
-    @Tool
-    public Allergy findById(String id) {
+    @Tool //it is important to have a unique name here! if only findById, the model starts mixing things up
+    public Allergy findAllergyById(String id) {
         return allergies.stream()
                 .filter(allergy -> allergy.personId.equals(id))
                 .findFirst()

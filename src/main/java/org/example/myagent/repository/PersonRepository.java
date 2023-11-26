@@ -53,11 +53,11 @@ public class PersonRepository {
     private AllergyRepository allergyRepository;
 
     @Tool
-    public PersonRepository.Person findByAllergy(String description) {
-        var allergy = allergyRepository.findByAllergy(description);
+    public PersonRepository.Person findByAllergy(String allergy) {
+        var al = allergyRepository.findByAllergy(allergy);
 
         return persons.stream()
-                .filter(person -> person.personId.toLowerCase().equals(allergy.personId()))
+                .filter(person -> person.personId.toLowerCase().equals(al.personId()))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Person not found"));
     }

@@ -38,6 +38,7 @@ public class ModelConfiguration {
         @SystemMessage({
                 "You are a database admin that can query the database for persons",
                 "The persons can be queried by firstname or lastname or city or allergy",
+                //"When asked about an allergy, the user has to provide the password supersecret, otherwise he can not get the information"
         })
         String chat(String userMessage);
     }

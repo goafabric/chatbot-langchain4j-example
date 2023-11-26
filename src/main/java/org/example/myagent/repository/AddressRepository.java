@@ -20,16 +20,14 @@ public class AddressRepository {
         addresses.add(new Address("3", "Croesus Street", "Shelbyville"));
     }
 
-    @Tool
-    public Address findById(String id) {
+    @Tool //it is important to have a unique name here! if only findById, the model starts mixing things up
+    public Address findAddressById(String id) {
         return addresses.stream()
                 .filter(address -> address.personId.equals(id))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Address with id '" + id + "' not found"));
     }
 
-
-    //@Tool
     public Address findByCity(String city) {
         return addresses.stream()
                 .filter(address -> address.city.toLowerCase().equals(city.toLowerCase()))

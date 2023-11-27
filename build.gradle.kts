@@ -10,10 +10,10 @@ jacoco.toolVersion = "0.8.9"
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.1.3"
-    id("io.spring.dependency-management") version "1.1.0"
-    //id("org.graalvm.buildtools.native") version "0.9.23"
-    id("com.google.cloud.tools.jib") version "3.3.2"
+    id("org.springframework.boot") version "3.2.0"
+    id("io.spring.dependency-management") version "1.1.4"
+    //id("org.graalvm.buildtools.native") version "0.9.28"
+    id("com.google.cloud.tools.jib") version "3.4.0"
 }
 
 repositories {

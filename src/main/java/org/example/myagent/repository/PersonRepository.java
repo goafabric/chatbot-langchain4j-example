@@ -1,7 +1,5 @@
 package org.example.myagent.repository;
 
-import dev.langchain4j.agent.tool.Tool;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,7 +19,13 @@ public class PersonRepository {
         persons.add(new Person("3", "Monty", "Burns"));
     }
 
-    @Tool
+    public Person findPersonById(String personId) {
+        return persons.stream()
+                .filter(person -> person.personId.toLowerCase().equals(personId))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Person not found"));
+    }
+
     public Person findByFirstName(String firstName) {
         return persons.stream()
                 .filter(person -> person.firstName().toLowerCase().equals(firstName.toLowerCase()))
@@ -29,7 +33,6 @@ public class PersonRepository {
                 .orElseThrow(() -> new NoSuchElementException("Person with firstName '" + firstName + "' not found"));
     }
 
-    @Tool
     public Person findByLastName(String lastName) {
         return persons.stream()
                 .filter(person -> person.lastName().toLowerCase().equals(lastName.toLowerCase()))
@@ -37,29 +40,5 @@ public class PersonRepository {
                 .orElseThrow(() -> new NoSuchElementException("Person with lastName '" + lastName + "' not found"));
     }
 
-    @Autowired
-    private AddressRepository addressRepository;
-
-    @Tool
-    public PersonRepository.Person findByCity(String city) {
-        var address = addressRepository.findByCity(city);
-        return persons.stream()
-                .filter(person -> person.personId.toLowerCase().equals(address.personId()))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Person not found"));
-    }
-
-    @Autowired
-    private AllergyRepository allergyRepository;
-
-    @Tool
-    public PersonRepository.Person findByAllergy(String allergy) {
-        var al = allergyRepository.findByAllergy(allergy);
-
-        return persons.stream()
-                .filter(person -> person.personId.toLowerCase().equals(al.personId()))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Person not found"));
-    }
 
 }

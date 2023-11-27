@@ -5,9 +5,7 @@ import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
-import org.example.myagent.repository.AddressRepository;
-import org.example.myagent.repository.AllergyRepository;
-import org.example.myagent.repository.PersonRepository;
+import org.example.myagent.repository.PersonTool;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,7 +35,7 @@ public class Application {
     */
 
     @Bean
-    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (DatabaseAgent agent, PersonTool personTool) {
         return args -> {
             var  scanner = new Scanner(System.in);
             while (true) {
@@ -58,18 +56,18 @@ public class Application {
 
     @Bean
     DatabaseAgent databaseAgent(ChatLanguageModel chatLanguageModel,
-                               PersonRepository personRepository, AddressRepository addressRepository, AllergyRepository allergyRepository) {
+                                PersonTool personTool) {
         return AiServices.builder(DatabaseAgent.class)
                 .chatLanguageModel(chatLanguageModel)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
-                .tools(personRepository, addressRepository, allergyRepository)
+                .tools(personTool)
                 .build();
     }
 
     public interface DatabaseAgent {
         @SystemMessage({
                 "You are a database admin that can query the database for persons",
-                "The persons can be queried by firstname or lastname or city or allergy",
+                "The persons can be queried by firstname or lastname or city or allergy", //it's important to list the keywords, without the model mixes things up
         })
         String chat(String userMessage);
     }    

@@ -1,6 +1,5 @@
 package org.example.myagent.repository;
 
-import dev.langchain4j.agent.tool.Tool;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class AllergyRepository {
         allergies.add(new Allergy("3", "bees"));
     }
 
-    @Tool //it is important to have a unique name here! if only findById, the model starts mixing things up
     public Allergy findAllergyById(String id) {
         return allergies.stream()
                 .filter(allergy -> allergy.personId.equals(id))

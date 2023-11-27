@@ -21,8 +21,8 @@ public class PersonTool {
     }
 
     @Tool
-    public PersonRepository.Person findByLastName(String firstName) {
-        return personRepository.findByLastName(firstName);
+    public PersonRepository.Person findByLastName(String lastName) {
+        return personRepository.findByLastName(lastName);
     }
 
     @Tool

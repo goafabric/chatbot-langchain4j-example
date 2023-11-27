@@ -35,7 +35,7 @@ public class Application {
     */
 
     @Bean
-    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (DatabaseAgent agent, PersonTool personTool) {
         return args -> {
             var  scanner = new Scanner(System.in);
             while (true) {

@@ -51,8 +51,12 @@ public class ChatBotLogic {
         model.generate(prompt, new StreamingResponseHandler<>() {
             @Override
             public void onNext(String token) {
-                System.out.print(token);
-                if (token.contains(",") || token.contains(".")) { System.out.println(); }
+                if (token != null) {
+                    System.out.print(token);
+                    if (token.contains(",") || token.contains(".")) {
+                        System.out.println();
+                    }
+                }
             }
 
             @Override

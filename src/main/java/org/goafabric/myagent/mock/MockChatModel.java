@@ -57,7 +57,7 @@ public class MockChatModel implements ChatLanguageModel {
         var matcher = pattern.matcher(inputString);
 
         if (matcher.find()) {
-            return matcher.find() ? matcher.group(1).trim() : throw new IllegalArgumentException("keyword not found");
+            return matcher.group(1).trim();
         } else {
             throw new IllegalArgumentException("keyword not found");
         }

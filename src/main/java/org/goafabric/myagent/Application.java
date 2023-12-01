@@ -2,18 +2,18 @@ package org.goafabric.myagent;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
+import org.goafabric.myagent.mock.MockChatModel;
 import org.goafabric.myagent.repository.PersonTool;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.HashMap;
 import java.util.Scanner;
-
-import static java.time.Duration.ofSeconds;
+import java.util.function.Function;
 
 
 /**
@@ -36,6 +36,7 @@ public class Application {
 
     @Bean
     public ApplicationRunner applicationRunner (DatabaseAgent agent, PersonTool personTool) {
+
         return args -> {
             var  scanner = new Scanner(System.in);
             while (true) {
@@ -47,11 +48,21 @@ public class Application {
     }
 
     @Bean
-    ChatLanguageModel chatModel() {
+    ChatLanguageModel chatModel(PersonTool personTool) {
+        HashMap<String, Function<String, Object>> functions = new HashMap<>();
+        functions.put("firstname", personTool::findByFirstName);
+        functions.put("lastname", personTool::findByLastName);
+        functions.put("city", personTool::findByCity);
+        functions.put("allergy", personTool::findByAllergy);
+
+        return new MockChatModel(functions);
+        /*
         return OpenAiChatModel.builder().apiKey("demo")
                 .modelName("gpt-3.5-turbo")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();
+
+         */
     }
 
     @Bean

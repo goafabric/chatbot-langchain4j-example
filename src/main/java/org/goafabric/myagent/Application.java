@@ -54,6 +54,7 @@ public class Application {
         functions.put("lastname", personTool::findByLastName);
         functions.put("city", personTool::findByCity);
         functions.put("allergy", personTool::findByAllergy);
+        //functions.put("hi", f -> "hi there");
 
         return new MockChatModel(functions);
         /*

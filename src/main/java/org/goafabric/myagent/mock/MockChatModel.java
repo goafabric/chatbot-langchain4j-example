@@ -5,6 +5,7 @@ import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.output.Response;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,29 +34,30 @@ public class MockChatModel implements ChatLanguageModel {
 
     @Override
     public Response<AiMessage> generate(List<ChatMessage> messages, List<ToolSpecification> toolSpecifications) {
-        var message = messages.get(messages.size() -1 ).text();
-
-        for (Map.Entry<String, Function<String, Object>> entry : functions.entrySet()) {
-            var keyWord = entry.getKey();
-            var function = entry.getValue();
-            if (message.toLowerCase().contains(keyWord.toLowerCase())) {
-                try {
-                    var parameter = extractValueForKeyword(message, keyWord);
-                    return Response.from(new AiMessage(function.apply(parameter).toString()));
-                } catch (Exception e) {
-                    log.error(e.getMessage());
-                    return Response.from(new AiMessage("sorry, there was an error calling the function"));
-                }
-            }
-        }
-
-        return Response.from(new AiMessage("sorry, i am just a stupid mock bot, i cannot help you with that"));
+        var message = messages.get(messages.size() -1 ).text(); //get the last message
+        return parseMessage(message);
     }
 
-    private static String extractValueForKeyword(String inputString, String keyword) {
-        var pattern = Pattern.compile("\\b" + keyword + "\\s+([^\\s]+)");
-        var matcher = pattern.matcher(inputString);
+    @NotNull
+    private Response<AiMessage> parseMessage(String message) {
+        return functions.entrySet().stream()
+                .filter(entry -> message.toLowerCase().contains(entry.getKey().toLowerCase()))
+                .findFirst()
+                .map(entry -> {
+                    try {
+                        var function = entry.getValue();
+                        var parameter = extractValueForKeyword(message, entry.getKey());
+                        return Response.from(new AiMessage("I have found: " + function.apply(parameter).toString()));
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                        return Response.from(new AiMessage("sorry, there was an error calling the function"));
+                    }
+                }).orElse(Response.from(new AiMessage("sorry dave, i can't do that, i am just a simple mock")));
+    }
 
+    private String extractValueForKeyword(String inputString, String keyword) {
+        var pattern = Pattern.compile("\\b" + keyword + "\\s+([^\\s]+)", Pattern.CASE_INSENSITIVE);
+        var matcher = pattern.matcher(inputString);
         if (matcher.find()) {
             return matcher.group(1).trim();
         } else {

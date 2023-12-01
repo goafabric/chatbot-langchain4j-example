@@ -14,7 +14,7 @@ public class AllergyRepository {
 
     public AllergyRepository() {
         allergies = new ArrayList<>();
-        allergies.add(new Allergy("1", "hard work"));
+        allergies.add(new Allergy("1", "work"));
         allergies.add(new Allergy("2", "peanuts"));
         allergies.add(new Allergy("3", "bees"));
     }

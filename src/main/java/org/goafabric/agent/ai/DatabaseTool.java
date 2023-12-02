@@ -1,15 +1,18 @@
-package org.goafabric.agent.repository;
+package org.goafabric.agent.ai;
 
 import dev.langchain4j.agent.tool.Tool;
+import org.goafabric.agent.repository.AddressRepository;
+import org.goafabric.agent.repository.AllergyRepository;
+import org.goafabric.agent.repository.PersonRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonTool {
+public class DatabaseTool {
     private final PersonRepository personRepository;
     private final AddressRepository addressRepository;
     private final AllergyRepository allergyRepository;
 
-    public PersonTool(PersonRepository personRepository, AddressRepository addressRepository, AllergyRepository allergyRepository) {
+    public DatabaseTool(PersonRepository personRepository, AddressRepository addressRepository, AllergyRepository allergyRepository) {
         this.personRepository = personRepository;
         this.addressRepository = addressRepository;
         this.allergyRepository = allergyRepository;

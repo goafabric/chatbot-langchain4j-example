@@ -1,6 +1,6 @@
 package org.goafabric.chatbot;
 
-import org.goafabric.chatbot.ai.OpenAiChat;
+import org.goafabric.chatbot.ai.OllamaChat;
 
 import java.util.Scanner;
 
@@ -17,8 +17,8 @@ public class ChatApplication {
             System.out.print("[User]: ");
             var userMessage = scanner.nextLine();
             System.out.print("[Agent]: ");
-            OpenAiChat.chat(userMessage);
-            //OllamaChat.chat(userMessage);
+            //OpenAiChat.chat(userMessage);
+            OllamaChat.chat(userMessage);
         }
     }
 

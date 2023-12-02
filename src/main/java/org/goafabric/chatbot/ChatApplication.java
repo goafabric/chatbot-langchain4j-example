@@ -15,8 +15,10 @@ public class ChatApplication {
         var  scanner = new Scanner(System.in);
         while (true) {
             System.out.print("[User]: ");
-            OpenAiChat.chat(scanner.nextLine());
-            //OllamaChat.chat(scanner.nextLine());
+            var userMessage = scanner.nextLine();
+            System.out.print("[Agent]: ");
+            OpenAiChat.chat(userMessage);
+            //OllamaChat.chat(userMessage);
         }
     }
 

@@ -1,19 +1,23 @@
-package org.goafabric.myagent;
+package org.goafabric.agent;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
-import org.goafabric.myagent.mock.MockChatModel;
-import org.goafabric.myagent.repository.PersonTool;
+import org.goafabric.agent.mock.MockChatModel;
+import org.goafabric.agent.repository.PersonTool;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Function;
+
+import static java.time.Duration.ofSeconds;
 
 
 /**
@@ -21,10 +25,10 @@ import java.util.function.Function;
  */
 
 @SpringBootApplication
-public class Application {
+public class AgentApplication {
 
     public static void main(String[] args){
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(AgentApplication.class, args);
     }
 
     /*
@@ -48,7 +52,18 @@ public class Application {
     }
 
     @Bean
-    ChatLanguageModel chatModel(PersonTool personTool) {
+    @Profile("openai")
+    ChatLanguageModel chatModelOpenAi(PersonTool personTool) {
+        return OpenAiChatModel.builder().apiKey("demo")
+                .modelName("gpt-3.5-turbo")
+                .timeout(ofSeconds(30)).temperature(0.0)
+                .build();
+    }
+
+
+    @Bean
+    @Profile("mock")
+    ChatLanguageModel chatModelMock(PersonTool personTool) {
         HashMap<String, Function<String, Object>> functions = new HashMap<>();
         functions.put("firstname", personTool::findByFirstName);
         functions.put("lastname", personTool::findByLastName);
@@ -57,13 +72,6 @@ public class Application {
         //functions.put("hi", f -> "hi there");
 
         return new MockChatModel(functions);
-        /*
-        return OpenAiChatModel.builder().apiKey("demo")
-                .modelName("gpt-3.5-turbo")
-                .timeout(ofSeconds(30)).temperature(0.0)
-                .build();
-
-         */
     }
 
     @Bean

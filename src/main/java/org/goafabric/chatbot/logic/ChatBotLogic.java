@@ -5,21 +5,20 @@ import dev.langchain4j.model.ollama.OllamaStreamingLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import static java.time.Duration.ofSeconds;
 
-@Component
+//@Component
 public class ChatBotLogic {
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
-    public void run() {
+    public static void run() {
         var prompt = "What do you know about Spring Boot, in a short answer ?";
         promptOpenAi(prompt);
         //promptLama(prompt);
     }
 
-    private void promptOpenAi(String prompt) {
+    private static void promptOpenAi(String prompt) {
         var model = OpenAiChatModel.builder().apiKey("demo").timeout(ofSeconds(30)).build();
         System.out.println("Calling remote chatgpt \uD83E\uDD16 with question:\n" + prompt + "\n");
         System.out.println(model.generate(prompt));
@@ -42,7 +41,7 @@ public class ChatBotLogic {
          */
     }
 
-    private void promptLama(String prompt) {
+    private static void promptLama(String prompt) {
         var model = OllamaStreamingLanguageModel.builder().baseUrl("http://localhost:11434").modelName("llama2")
                 .timeout(ofSeconds(30)).build();
 

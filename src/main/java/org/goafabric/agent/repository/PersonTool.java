@@ -1,4 +1,4 @@
-package org.goafabric.myagent.repository;
+package org.goafabric.agent.repository;
 
 import dev.langchain4j.agent.tool.Tool;
 import org.springframework.stereotype.Component;

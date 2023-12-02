@@ -5,7 +5,7 @@ import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
-import org.goafabric.agent.mock.MockChatModel;
+import org.goafabric.agent.ai.MockChatModel;
 import org.goafabric.agent.repository.PersonTool;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

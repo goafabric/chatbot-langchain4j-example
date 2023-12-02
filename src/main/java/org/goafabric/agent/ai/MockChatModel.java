@@ -1,4 +1,4 @@
-package org.goafabric.agent.mock;
+package org.goafabric.agent.ai;
 
 import dev.langchain4j.agent.tool.ToolSpecification;
 import dev.langchain4j.data.message.AiMessage;
@@ -50,9 +50,9 @@ public class MockChatModel implements ChatLanguageModel {
                         return Response.from(new AiMessage("I have found: " + function.apply(parameter).toString()));
                     } catch (Exception e) {
                         log.error(e.getMessage(), e);
-                        return Response.from(new AiMessage("sorry, there was an error calling the function"));
+                        return Response.from(new AiMessage("Sorry, there was an error calling the function"));
                     }
-                }).orElse(Response.from(new AiMessage("sorry dave, i can't do that, i am just a simple mock")));
+                }).orElse(Response.from(new AiMessage("I am sorry, but i cannot help you with that. I am just a simple mock.")));
     }
 
     private String extractValueForKeyword(String inputString, String keyword) {

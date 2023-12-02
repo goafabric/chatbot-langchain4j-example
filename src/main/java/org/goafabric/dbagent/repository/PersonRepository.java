@@ -8,7 +8,12 @@ import java.util.NoSuchElementException;
 
 @Component
 public class PersonRepository {
-    public record Person(String personId, String firstName, String lastName) {}
+    public record Person(String personId, String firstName, String lastName) {
+        @Override
+        public String toString() {
+            return String.format("%s %s", firstName, lastName);
+        }
+    }
 
     private List<Person> persons;
 

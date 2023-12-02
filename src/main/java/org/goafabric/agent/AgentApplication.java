@@ -35,7 +35,7 @@ public class AgentApplication {
             while (true) {
                 System.out.print("[User]: ");
                 var agentAnswer = agent.chat(scanner.nextLine());
-                System.out.println("[Agent]; " + agentAnswer);
+                System.out.println("[Agent]: " + agentAnswer);
             }
         };
     }

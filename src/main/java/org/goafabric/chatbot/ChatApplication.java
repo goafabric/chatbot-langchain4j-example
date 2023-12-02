@@ -1,29 +1,24 @@
 package org.goafabric.chatbot;
 
-import org.goafabric.chatbot.logic.ChatBotLogic;
+import org.goafabric.chatbot.ai.OpenAiChat;
+
+import java.util.Scanner;
 
 
 /**
  * Created by amautsch on 26.06.2015.
  */
 
-//@SpringBootApplication
+
 public class ChatApplication {
     public static void main(String[] args){
-        ChatBotLogic.run();
+        var  scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("[User]: ");
+            OpenAiChat.chat(scanner.nextLine());
+            //OllamaChat.chat(scanner.nextLine());
+        }
     }
-
-    /*
-    public static void main(String[] args){
-        SpringApplication.run(Application.class, args);
-    }
-
-    @Bean
-    public CommandLineRunner init(ApplicationContext context, ChatBotLogic chatBotLogic) {
-        return args -> chatBotLogic.run();
-    }
-
-     */
 
 
 }

@@ -57,7 +57,8 @@ public class MockChatModel implements ChatLanguageModel {
 
     private String extractValueForKeyword(String inputString, String keyword) {
         var pattern = Pattern.compile("\\b" + keyword + "\\s+([^\\s]+)", Pattern.CASE_INSENSITIVE);
-        var matcher = pattern.matcher(inputString);
+        var matcher = pattern.matcher(inputString
+                .replaceAll("of", "").replaceAll("to", "").replaceAll("from", ""));
         if (matcher.find()) {
             return matcher.group(1).trim();
         } else {

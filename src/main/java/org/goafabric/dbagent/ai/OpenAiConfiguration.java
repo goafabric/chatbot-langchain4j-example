@@ -1,30 +1,25 @@
-package org.goafabric.agent.ai;
+package org.goafabric.dbagent.ai;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
-import org.goafabric.agent.ai.mock.MockChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.util.HashMap;
-import java.util.function.Function;
+import static java.time.Duration.ofSeconds;
 
 @Configuration
-@Profile("mock")
-public class MockConfiguration {
+@Profile("openai")
+public class OpenAiConfiguration {
 
     @Bean
-    ChatLanguageModel chatModelMock(DatabaseTool databaseTool) {
-        HashMap<String, Function<String, Object>> functions = new HashMap<>();
-        functions.put("firstname", databaseTool::findByFirstName);
-        functions.put("lastname", databaseTool::findByLastName);
-        functions.put("city", databaseTool::findByCity);
-        functions.put("allergy", databaseTool::findByAllergy);
-        //functions.put("hi", f -> "hi there");
-
-        return new MockChatModel(functions);
+    ChatLanguageModel chatModelOpenAi(DatabaseTool databaseTool) {
+        return OpenAiChatModel.builder().apiKey("demo")
+                .modelName("gpt-3.5-turbo")
+                .timeout(ofSeconds(30)).temperature(0.0)
+                .build();
     }
 
     @Bean
@@ -35,4 +30,6 @@ public class MockConfiguration {
                 .tools(databaseTool)
                 .build();
     }
+
+
 }

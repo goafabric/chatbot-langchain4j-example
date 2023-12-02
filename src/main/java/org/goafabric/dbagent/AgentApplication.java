@@ -1,6 +1,6 @@
-package org.goafabric.agent;
+package org.goafabric.dbagent;
 
-import org.goafabric.agent.ai.DatabaseAgent;
+import org.goafabric.dbagent.ai.DatabaseAgent;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

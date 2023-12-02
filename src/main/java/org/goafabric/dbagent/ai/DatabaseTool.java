@@ -1,9 +1,9 @@
-package org.goafabric.agent.ai;
+package org.goafabric.dbagent.ai;
 
 import dev.langchain4j.agent.tool.Tool;
-import org.goafabric.agent.repository.AddressRepository;
-import org.goafabric.agent.repository.AllergyRepository;
-import org.goafabric.agent.repository.PersonRepository;
+import org.goafabric.dbagent.repository.AddressRepository;
+import org.goafabric.dbagent.repository.AllergyRepository;
+import org.goafabric.dbagent.repository.PersonRepository;
 import org.springframework.stereotype.Component;
 
 @Component

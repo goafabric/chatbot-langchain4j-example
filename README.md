@@ -4,6 +4,10 @@
 - launch Application Class
 - also has an example for remote chatgpt with the demo key
 
+# ollama docker (3x slower due to missing m1 gpu support)
+docker run --rm -v ~/.ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:0.1.13
+docker exec -it ollama ollama run llama2
+
 # curl
 time curl http://localhost:11434/api/generate -d '{
 "model": "llama2",
@@ -20,7 +24,4 @@ https://github.com/jmorganca/ollama/blob/main/docs/api.md
 https://hub.docker.com/r/ollama/ollama
 https://github.com/jmorganca/ollama
 
-# ollama docker (3x slower due to missing m1 gpu support)
-docker run --rm -v ~/.ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:0.1.13
-docker exec -it ollama ollama run llama2
 

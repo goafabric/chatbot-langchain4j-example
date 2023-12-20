@@ -24,4 +24,11 @@ https://github.com/jmorganca/ollama/blob/main/docs/api.md
 https://hub.docker.com/r/ollama/ollama
 https://github.com/jmorganca/ollama
 
+# localai
+https://localai.io/basics/getting_started/
 
+curl -v http://localhost:8000/v1/completions -H "Content-Type: application/json" -d '{
+"model": "GPT4All-J Groovy.bin",
+"prompt": "A long time ago in a galaxy far, far away",
+"temperature": 0.7
+}'

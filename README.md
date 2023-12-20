@@ -27,6 +27,8 @@ https://github.com/jmorganca/ollama
 # localai
 https://localai.io/basics/getting_started/
 
+./local-ai-avx-Darwin-x86_64 --models-path ~/.localai/models
+
 curl http://localhost:8080/v1/models
 
 curl -v http://localhost:8080/v1/completions -H "Content-Type: application/json" -d '{
@@ -34,3 +36,4 @@ curl -v http://localhost:8080/v1/completions -H "Content-Type: application/json"
 "prompt": "A long time ago in a galaxy far, far away",
 "temperature": 0.7
 }'
+                            

@@ -31,7 +31,7 @@ https://localai.io/basics/getting_started/
 
 curl http://localhost:8080/v1/models
 
-curl -v http://localhost:8080/v1/completions -H "Content-Type: application/json" -d '{
+curl -v http://localhost:8000/v1/completions -H "Content-Type: application/json" -d '{
 "model": "GPT4All-J Groovy.bin",
 "prompt": "A long time ago in a galaxy far, far away",
 "temperature": 0.7

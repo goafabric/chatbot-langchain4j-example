@@ -8,7 +8,7 @@ public class LocalAiChat {
     public static void chat(String prompt) {
         System.out.println("Calling localai \uD83E\uDD16");
 
-        var model2 = LocalAiLanguageModel.builder().modelName("GPT4All-J Groovy").baseUrl("http://localhost:8000/v1").timeout(ofSeconds(30)).build();
+        var model2 = LocalAiLanguageModel.builder().modelName("GPT4All-J Groovy.bin").baseUrl("http://localhost:8000/v1").timeout(ofSeconds(30)).build();
         model2.generate(prompt);
 
         /*

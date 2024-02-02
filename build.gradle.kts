@@ -44,6 +44,8 @@ dependencies {
     implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:0.24.0")
 
 
+    implementation("org.apache.opennlp:opennlp-tools:2.3.1")
+
     //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

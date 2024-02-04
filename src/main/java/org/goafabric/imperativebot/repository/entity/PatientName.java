@@ -1,4 +1,4 @@
-package org.goafabric.imperativebot.repository;
+package org.goafabric.imperativebot.repository.entity;
 
 public record PatientName(String id, String name) {
     @Override

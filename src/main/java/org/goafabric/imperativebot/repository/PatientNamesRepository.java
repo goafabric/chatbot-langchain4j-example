@@ -1,5 +1,7 @@
 package org.goafabric.imperativebot.repository;
 
+import org.goafabric.imperativebot.repository.entity.PatientName;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

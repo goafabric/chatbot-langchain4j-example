@@ -3,7 +3,6 @@ package org.goafabric.imperativebot.logic;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ImperativeChatBotTest {
     private ImperativeChatBot chatBot = new ImperativeChatBot();
@@ -19,7 +18,13 @@ class ImperativeChatBotTest {
 
     @Test
     public void findText() {
-        assertThat(chatBot.find("Homer").patientName().get().name()).isEqualTo("Homer Simpson");
+        assertThat(chatBot.find("I am searching for Homer").patientName().get().name()).isEqualTo("Homer Simpson");
+    }
+
+    @Test
+    public void reduceText() {
+        assertThat(String.join(" ", chatBot.reduceText("I am searching for Simpson, Bart")))
+                .isEqualTo("searching Simpson Bart");
     }
 
 }

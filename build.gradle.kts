@@ -45,6 +45,7 @@ dependencies {
 
 
     implementation("org.apache.opennlp:opennlp-tools:2.3.1")
+    implementation("commons-codec:commons-codec:1.16.0")
 
     //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

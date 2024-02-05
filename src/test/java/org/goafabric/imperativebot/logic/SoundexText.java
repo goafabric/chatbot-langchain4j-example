@@ -22,5 +22,9 @@ public class SoundexText {
 
         System.out.println("müller: " + phonetic.encode("müller"));
         System.out.println("mueller: " + phonetic.encode("mueller"));
+
+
+        System.out.println("müller, hans: " + phonetic.encode("müller, hans"));
+        System.out.println("mueller, hans: " + phonetic.encode("müller, hans"));
     }
 }

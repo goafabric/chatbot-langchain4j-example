@@ -26,6 +26,10 @@ public class PatientLogic {
         return repository.findByFamilyNameContainsIgnoreCaseOrFamilySoundex(familyName.toLowerCase(), phonetic.encode(familyName));
     }
 
+    public List<PatientEo> findBy(String familyName, String givenName) {
+        return repository.findByFamilyNameContainsIgnoreCaseOrFamilySoundexAndGivenNameContainsIgnoreCase(familyName.toLowerCase(), phonetic.encode(familyName), givenName);
+    }
+
     public void save(PatientEo patient) {
         repository.save(new PatientEo(patient.getId(), patient.getGivenName(), patient.getFamilyName(), phonetic.encode(patient.getFamilyName())));
     }

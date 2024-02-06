@@ -43,6 +43,9 @@ class PatientLogicIT {
         assertThat(findBy("Mei")).isEmpty();
 
         assertThat(findBy("")).isNotEmpty();
+
+        assertThat(findBy("Meyers", "Michael")).isNotEmpty();
+
     }
 
     private List<PatientEo> findBy(String familyName) {
@@ -55,7 +58,18 @@ class PatientLogicIT {
             System.out.println("found: " +  patients.get(0).toString());
         }
         return patients;
+    }
 
+    private List<PatientEo> findBy(String familyName, String givenName) {
+        System.out.println("");
+        System.out.println("searching for: " + familyName + " , " + givenName);
+        var patients = patientLogic.findBy(familyName,givenName);
+        if (patients.isEmpty()) {
+            System.out.println("not found");
+        } else {
+            System.out.println("found: " +  patients.get(0).toString());
+        }
+        return patients;
     }
 
 }

@@ -33,9 +33,11 @@ class PatientLogicIT {
     @Test
     public void test() {
         //patientLogic.findAll().forEach(patient -> log.info(patient.toString()));
-        
-        assertThat(findBy("Simpson")).isNotEmpty();
+
         assertThat(findBy("Noone")).isEmpty();
+
+        assertThat(findBy("Meyers")).isNotEmpty();
+        assertThat(findBy("Meiers")).isNotEmpty();
     }
 
     private List<PatientEo> findBy(String familyName) {

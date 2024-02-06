@@ -1,13 +1,13 @@
 package org.goafabric.imperativebot.logic;
 
 import org.apache.commons.codec.EncoderException;
-import org.apache.commons.codec.language.ColognePhonetic;
+import org.goafabric.soundex.MyColognePhonetic;
 import org.junit.jupiter.api.Test;
 
 public class SoundexText {
     @Test
     public void test() throws EncoderException {
-        ColognePhonetic phonetic = new ColognePhonetic();
+        MyColognePhonetic phonetic = new MyColognePhonetic();
         /*
         Soundex soundex = new Soundex();
         System.err.println( soundex.difference("meyers", "meiers"));

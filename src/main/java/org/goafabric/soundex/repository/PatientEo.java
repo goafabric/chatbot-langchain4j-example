@@ -40,11 +40,6 @@ public class PatientEo {
 
     @Override
     public String toString() {
-        return "PatientEo{" +
-                "id='" + id + '\'' +
-                ", givenName='" + givenName + '\'' +
-                ", familyName='" + familyName + '\'' +
-                ", familySoundex='" + familySoundex + '\'' +
-                '}';
+        return givenName + " " + familyName;
     }
 }

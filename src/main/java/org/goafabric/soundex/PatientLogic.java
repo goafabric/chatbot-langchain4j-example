@@ -1,6 +1,5 @@
 package org.goafabric.soundex;
 
-import org.apache.commons.codec.language.ColognePhonetic;
 import org.goafabric.soundex.repository.PatientEo;
 import org.goafabric.soundex.repository.PatientRepository;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,7 @@ import java.util.List;
 @Component
 @Transactional
 public class PatientLogic {
-    private final ColognePhonetic phonetic = new ColognePhonetic();
+    private final MyColognePhonetic phonetic = new MyColognePhonetic();
 
     private final PatientRepository repository;
 

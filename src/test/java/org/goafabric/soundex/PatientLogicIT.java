@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PatientLogicIT {
@@ -30,7 +34,20 @@ class PatientLogicIT {
     public void test() {
         //patientLogic.findAll().forEach(patient -> log.info(patient.toString()));
         
-        patientLogic.findBy("Simpson").forEach(patient -> log.info(patient.toString()));
+        assertThat(findBy("Simpson")).isNotEmpty();
+        assertThat(findBy("Noone")).isEmpty();
+    }
+
+    private List<PatientEo> findBy(String familyName) {
+        System.out.println("");
+        System.out.println("searching for: " + familyName);
+        var patients = patientLogic.findBy(familyName);
+        if (patients.isEmpty()) {
+            System.out.println("not found");
+        } else {
+            System.out.println("found: " +  patients.get(0).toString());
+        }
+        return patients;
 
     }
 

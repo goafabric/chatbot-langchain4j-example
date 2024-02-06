@@ -10,13 +10,15 @@ public class PatientEo {
     private String id;
 
     private String givenName;
+    private String givenSoundex;
     private String familyName;
     private String familySoundex;
 
     private PatientEo() {}
-    public PatientEo(String id, String givenName, String familyName, String familySoundex) {
+    public PatientEo(String id, String givenName, String givenSoundex, String familyName, String familySoundex) {
         this.id = id;
         this.givenName = givenName;
+        this.givenSoundex = givenSoundex;
         this.familyName = familyName;
         this.familySoundex = familySoundex;
     }
@@ -27,6 +29,10 @@ public class PatientEo {
 
     public String getGivenName() {
         return givenName;
+    }
+
+    public String getGivenSoundex() {
+        return givenSoundex;
     }
 
     public String getFamilyName() {

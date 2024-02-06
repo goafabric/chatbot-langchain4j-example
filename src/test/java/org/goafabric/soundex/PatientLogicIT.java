@@ -23,10 +23,10 @@ class PatientLogicIT {
 
     @BeforeAll
     public void init() {
-        patientLogic.save(new PatientEo(null, "Homer", "Simpson", null));
-        patientLogic.save(new PatientEo(null, "Monty", "Burns", null));
-        patientLogic.save(new PatientEo(null, "Michael", "Meyers", null));
-        patientLogic.save(new PatientEo(null, "Ernst", "Müller", null));
+        patientLogic.save(new PatientEo(null, "Homer", null, "Simpson", null));
+        patientLogic.save(new PatientEo(null, "Monty", null,"Burns", null));
+        patientLogic.save(new PatientEo(null, "Michael", null,"Meyers", null));
+        patientLogic.save(new PatientEo(null, "Hans", null, "Müller", null));
 
     }
 
@@ -45,6 +45,29 @@ class PatientLogicIT {
         assertThat(findBy("")).isNotEmpty();
 
         assertThat(findBy("Meyers", "Michael")).isNotEmpty();
+    }
+
+    @Test
+    public void test2() {
+        assertThat(findBy("Meyers", "")).isNotEmpty();
+        assertThat(findBy("Meiers", "")).isNotEmpty();
+
+        assertThat(findBy("Meyers", "Michael")).isNotEmpty();
+        assertThat(findBy("Meiers", "Michael")).isNotEmpty();
+
+        assertThat(findBy("Mey", "Mic")).isNotEmpty();
+
+        assertThat(findBy("Müller", "Hans")).isNotEmpty();
+        assertThat(findBy("Mueller", "Hans")).isNotEmpty();
+        assertThat(findBy("Mueller", "Hanz")).isNotEmpty();
+
+        assertThat(findBy("Müll", "Han")).isNotEmpty();
+
+        assertThat(findBy("Mei", "")).isEmpty();
+        assertThat(findBy("Muell", "")).isEmpty();
+
+        assertThat(findBy("Hans", "Müller")).isEmpty();
+        assertThat(findBy("Michael", "Meyers")).isEmpty();
 
     }
 
@@ -62,7 +85,7 @@ class PatientLogicIT {
 
     private List<PatientEo> findBy(String familyName, String givenName) {
         System.out.println("");
-        System.out.println("searching for: " + familyName + " , " + givenName);
+        System.out.println("searching for: " + familyName + ", " + givenName);
         var patients = patientLogic.findBy(familyName,givenName);
         if (patients.isEmpty()) {
             System.out.println("not found");

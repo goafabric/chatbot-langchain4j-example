@@ -27,10 +27,10 @@ public class PatientLogic {
     }
 
     public List<PatientEo> findBy(String familyName, String givenName) {
-        return repository.findByFamilyNameAndGivenName(familyName.toLowerCase(), phonetic.encode(familyName), givenName);
+        return repository.findByFamilyNameAndGivenName(familyName.toLowerCase(), phonetic.encode(familyName), givenName, phonetic.encode(givenName));
     }
 
     public void save(PatientEo patient) {
-        repository.save(new PatientEo(patient.getId(), patient.getGivenName(), patient.getFamilyName(), phonetic.encode(patient.getFamilyName())));
+        repository.save(new PatientEo(patient.getId(), patient.getGivenName(), phonetic.encode(patient.getGivenName()), patient.getFamilyName(), phonetic.encode(patient.getFamilyName())));
     }
 }

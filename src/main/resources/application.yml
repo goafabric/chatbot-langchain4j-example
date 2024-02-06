@@ -8,3 +8,5 @@ logging.level.dev.ai4j.openai4j: "DEBUG"
 
 #spring.profiles.active: "openai"
 spring.profiles.active: "mock"
+
+logging.level.org.hibernate.SQL: "DEBUG"

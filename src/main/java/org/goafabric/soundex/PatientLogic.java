@@ -23,7 +23,7 @@ public class PatientLogic {
     }
 
     public List<PatientEo> findBy(String familyName) {
-        return repository.findByFamilyNameEqualsIgnoreCaseOrFamilySoundex(familyName.toLowerCase(), phonetic.encode(familyName));
+        return repository.findByFamilyNameContainsIgnoreCaseOrFamilySoundex(familyName.toLowerCase(), phonetic.encode(familyName));
     }
 
     public void save(PatientEo patient) {

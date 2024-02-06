@@ -43,7 +43,11 @@ dependencies {
     implementation("org.mapdb:mapdb:3.0.9")
     implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:0.24.0")
 
+    //persistence
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+    implementation("com.h2database:h2")
 
+    //tools
     implementation("org.apache.opennlp:opennlp-tools:2.3.1")
     implementation("commons-codec:commons-codec:1.16.0")
 

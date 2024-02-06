@@ -41,6 +41,8 @@ class PatientLogicIT {
 
         assertThat(findBy("Mey")).isNotEmpty();
         assertThat(findBy("Mei")).isEmpty();
+
+        assertThat(findBy("")).isNotEmpty();
     }
 
     private List<PatientEo> findBy(String familyName) {

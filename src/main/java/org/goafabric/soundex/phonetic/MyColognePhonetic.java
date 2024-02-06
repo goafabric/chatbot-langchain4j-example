@@ -1,4 +1,4 @@
-package org.goafabric.soundex;
+package org.goafabric.soundex.phonetic;
 
 
 import java.util.Arrays;

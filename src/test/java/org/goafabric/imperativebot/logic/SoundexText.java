@@ -1,7 +1,7 @@
 package org.goafabric.imperativebot.logic;
 
 import org.apache.commons.codec.EncoderException;
-import org.goafabric.soundex.MyColognePhonetic;
+import org.goafabric.soundex.phonetic.MyColognePhonetic;
 import org.junit.jupiter.api.Test;
 
 public class SoundexText {

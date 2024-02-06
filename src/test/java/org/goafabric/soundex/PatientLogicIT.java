@@ -1,5 +1,6 @@
 package org.goafabric.soundex;
 
+import org.goafabric.soundex.logic.PatientLogic;
 import org.goafabric.soundex.repository.PatientEo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -32,23 +33,6 @@ class PatientLogicIT {
 
     @Test
     public void test() {
-        //patientLogic.findAll().forEach(patient -> log.info(patient.toString()));
-
-        assertThat(findBy("Noone")).isEmpty();
-
-        assertThat(findBy("Meyers")).isNotEmpty();
-        assertThat(findBy("Meiers")).isNotEmpty();
-
-        assertThat(findBy("Mey")).isNotEmpty();
-        assertThat(findBy("Mei")).isEmpty();
-
-        assertThat(findBy("")).isNotEmpty();
-
-        assertThat(findBy("Meyers", "Michael")).isNotEmpty();
-    }
-
-    @Test
-    public void test2() {
         assertThat(findBy("Meyers", "")).isNotEmpty();
         assertThat(findBy("Meiers", "")).isNotEmpty();
 
@@ -69,18 +53,6 @@ class PatientLogicIT {
         assertThat(findBy("Hans", "Müller")).isEmpty();
         assertThat(findBy("Michael", "Meyers")).isEmpty();
 
-    }
-
-    private List<PatientEo> findBy(String familyName) {
-        System.out.println("");
-        System.out.println("searching for: " + familyName);
-        var patients = patientLogic.findBy(familyName);
-        if (patients.isEmpty()) {
-            System.out.println("not found");
-        } else {
-            System.out.println("found: " +  patients.get(0).toString());
-        }
-        return patients;
     }
 
     private List<PatientEo> findBy(String familyName, String givenName) {

@@ -32,12 +32,15 @@ class ImperativeChatBotTest {
 
     @Test
     public void findText() {
+        assertThat(chatBot.find("I am searching all diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
+        assertThat(chatBot.find("I am searching all diagnosis and anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.CONDITION);
+        assertThat(chatBot.find("I am searching all diagnosis and anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.ANAMNESIS);
+
         assertThat(chatBot.find("").patientName()).isNull();
         assertThat(chatBot.find("").medicalRecordTypes()).isEmpty();
-
-        assertThat(chatBot.find("I am searching all diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
-        assertThat(chatBot.find("I am searching all diagnosis for Homer").medicalRecordTypes().get(0)).isEqualTo(MedicalRecordType.CONDITION);
     }
+
+    //todo text search + test Data for medical record repo + testdata
 
 
 }

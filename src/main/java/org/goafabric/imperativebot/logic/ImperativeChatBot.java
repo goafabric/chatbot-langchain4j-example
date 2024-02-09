@@ -1,9 +1,9 @@
 package org.goafabric.imperativebot.logic;
 
-import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.MedicalRecordTypeRepository;
-import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.goafabric.imperativebot.repository.PatientNamesRepository;
+import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
+import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +30,12 @@ public class ImperativeChatBot {
 
         return new SearchResult(patient, medicalRecordTypes);
     }
+
+    /*
+    public List<String> reduce(List<String> tokens, List<String> search) {
+        return tokens.stream().filter(token -> !search.contains(token)).toList();
+    }
+     */
 
     @Nullable
     private PatientName searchPatient(List<String> tokens) {

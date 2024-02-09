@@ -14,7 +14,7 @@ import java.util.Objects;
 
 
 public class ImperativeChatBot {
-    public record SearchResult(PatientName patientName, MedicalRecordType type) {}
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> types) {}
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -33,22 +33,19 @@ public class ImperativeChatBot {
 
     @Nullable
     private PatientName searchPatient(List<String> tokens) {
-        var patient = tokens.stream()
+        return tokens.stream()
                 .map(this::findPatient)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
-        return patient;
     }
 
     @Nullable
-    private MedicalRecordType searchMedicalRecordType(List<String> tokens) {
-        var medicalRecordType = tokens.stream()
+    private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
+        return tokens.stream()
                 .map(this::findByMedicalRecordType)
                 .filter(Objects::nonNull)
-                .findFirst()
-                .orElse(null);
-        return medicalRecordType;
+                .toList();
     }
 
     public List<String> tokeniceText(String input) {

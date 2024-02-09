@@ -4,6 +4,7 @@ import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.MedicalRecordTypeRepository;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.goafabric.imperativebot.repository.PatientNamesRepository;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,24 +23,35 @@ public class ImperativeChatBot {
 
 
     public SearchResult find(String text) {
-        var tokens = reduceText(text);
+        var tokens = tokeniceText(text);
+
+        var medicalRecordType = searchMedicalRecordType(tokens);
+        var patient = searchPatient(tokens);
+
+        return new SearchResult(patient, medicalRecordType);
+    }
+
+    @Nullable
+    private PatientName searchPatient(List<String> tokens) {
         var patient = tokens.stream()
                 .map(this::findPatient)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
+        return patient;
+    }
 
-
+    @Nullable
+    private MedicalRecordType searchMedicalRecordType(List<String> tokens) {
         var medicalRecordType = tokens.stream()
-                .map(this::findByType)
+                .map(this::findByMedicalRecordType)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
-
-        return new SearchResult(patient, medicalRecordType);
+        return medicalRecordType;
     }
 
-    public List<String> reduceText(String input) {
+    public List<String> tokeniceText(String input) {
         var text = input.replaceAll(",", "");
         return Arrays.stream(text.split(" "))
                 .filter(token -> token.length() > 3).toList();
@@ -50,7 +62,7 @@ public class ImperativeChatBot {
     }
 
 
-    public MedicalRecordType findByType(String type) {
+    public MedicalRecordType findByMedicalRecordType(String type) {
         return medicalRecordTypeRepository.findByType(type);
     }
 }

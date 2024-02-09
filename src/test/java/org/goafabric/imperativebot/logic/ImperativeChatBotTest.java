@@ -19,16 +19,16 @@ class ImperativeChatBotTest {
 
     @Test
     public void reduceText() {
-        assertThat(String.join(" ", chatBot.reduceText("I am searching for Simpson, Bart")))
+        assertThat(String.join(" ", chatBot.tokeniceText("I am searching for Simpson, Bart")))
                 .isEqualTo("searching Simpson Bart");
     }
 
 
     @Test
     public void findByType() {
-        assertThat(chatBot.findByType("Anamnesis")).isEqualTo(MedicalRecordType.ANAMNESIS);
-        assertThat(chatBot.findByType("Diagnosis")).isEqualTo(MedicalRecordType.CONDITION);
-        assertThat(chatBot.findByType("Befund")).isEqualTo(MedicalRecordType.FINDING);
+        assertThat(chatBot.findByMedicalRecordType("Anamnesis")).isEqualTo(MedicalRecordType.ANAMNESIS);
+        assertThat(chatBot.findByMedicalRecordType("Diagnosis")).isEqualTo(MedicalRecordType.CONDITION);
+        assertThat(chatBot.findByMedicalRecordType("Befund")).isEqualTo(MedicalRecordType.FINDING);
     }
 
     @Test

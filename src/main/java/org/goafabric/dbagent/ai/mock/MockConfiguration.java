@@ -1,9 +1,10 @@
-package org.goafabric.dbagent.ai;
+package org.goafabric.dbagent.ai.mock;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;
-import org.goafabric.dbagent.ai.mock.MockChatModel;
+import org.goafabric.dbagent.ai.DatabaseAgent;
+import org.goafabric.dbagent.ai.DatabaseTool;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

@@ -14,7 +14,7 @@ import java.util.Objects;
 
 
 public class ImperativeChatBot {
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> types) {}
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {}
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -25,10 +25,10 @@ public class ImperativeChatBot {
     public SearchResult find(String text) {
         var tokens = tokeniceText(text);
 
-        var medicalRecordType = searchMedicalRecordType(tokens);
+        var medicalRecordTypes = searchMedicalRecordType(tokens);
         var patient = searchPatient(tokens);
 
-        return new SearchResult(patient, medicalRecordType);
+        return new SearchResult(patient, medicalRecordTypes);
     }
 
     @Nullable

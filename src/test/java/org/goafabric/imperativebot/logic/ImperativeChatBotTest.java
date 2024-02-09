@@ -33,10 +33,10 @@ class ImperativeChatBotTest {
     @Test
     public void findText() {
         assertThat(chatBot.find("").patientName()).isNull();
-        assertThat(chatBot.find("").types()).isEmpty();
+        assertThat(chatBot.find("").medicalRecordTypes()).isEmpty();
 
         assertThat(chatBot.find("I am searching all diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
-        assertThat(chatBot.find("I am searching all diagnosis for Homer").types().get(0)).isEqualTo(MedicalRecordType.CONDITION);
+        assertThat(chatBot.find("I am searching all diagnosis for Homer").medicalRecordTypes().get(0)).isEqualTo(MedicalRecordType.CONDITION);
     }
 
 

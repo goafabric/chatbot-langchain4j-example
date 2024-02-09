@@ -35,8 +35,8 @@ public class DatabaseTool {
     }
 
     @Tool
-    public PersonRepository.Person findByAllergy(String allergy) {
-        String personId = allergyRepository.findByAllergy(allergy).personId();
+    public PersonRepository.Person findByAllergy(String allergy, String language) {
+        String personId = allergyRepository.findByAllergy(allergy, language).personId();
         return personRepository.findPersonById(personId);
     }
 

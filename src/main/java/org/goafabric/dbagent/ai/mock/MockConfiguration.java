@@ -22,7 +22,7 @@ public class MockConfiguration {
         functions.put("firstname", databaseTool::findByFirstName);
         functions.put("lastname", databaseTool::findByLastName);
         functions.put("city", databaseTool::findByCity);
-        functions.put("allergy", databaseTool::findByAllergy);
+        //functions.put("allergy", databaseTool::findByAllergy);
         //functions.put("hi", f -> "hi there");
 
         return new MockChatModel(functions);

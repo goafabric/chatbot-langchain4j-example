@@ -13,10 +13,13 @@ public class BruteChatTool {
     private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
     public PatientName findPatientViaDatabaseBruteForce(String name) {
-        var patientName = patientNamesRepository.findByName(name, "").orElse(null);
-        return patientName != null
-                ? patientName
-                : patientNamesRepository.findByName("", name).orElse(null);
+        var patientNames = patientNamesRepository.findByName(name, "");
+        if (!patientNames.isEmpty()) {
+            return patientNames.get(0);
+        } else {
+            var patientNames2 = patientNamesRepository.findByName("", name);
+            return !patientNames2.isEmpty() ? patientNames2.get(0) : null;
+        }
     }
 
     public MedicalRecordType findMedicalRecordTypeViaKeyords(String type) {

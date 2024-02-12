@@ -5,7 +5,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PatientNamesRepository {
     private List<PatientName> patientNames;
@@ -17,18 +16,15 @@ public class PatientNamesRepository {
         patientNames.add(new PatientName("3", "Monty", "Burns"));
     }
 
-    public Optional<PatientName> findByName(String givenName, String familyName) {
+    public List<PatientName> findByName(String givenName, String familyName) {
         if (StringUtils.hasText(givenName)) {
             return patientNames.stream()
-                    .filter(person ->
-                            person.givenName().toLowerCase().contains(givenName.toLowerCase())).findFirst();
-        }
-
-        if (StringUtils.hasText(familyName)) {
+                    .filter(person -> person.givenName().toLowerCase().contains(givenName.toLowerCase())).toList();
+        } else if (StringUtils.hasText(familyName)) {
             return patientNames.stream()
-                    .filter(person ->
-                            person.familyName().toLowerCase().contains(familyName.toLowerCase())).findFirst();
+                    .filter(person -> person.familyName().toLowerCase().contains(familyName.toLowerCase())).toList();
+        } else {
+            return new ArrayList<>();
         }
-        return Optional.of(null);
     }
 }

@@ -13,6 +13,7 @@ class BruteChatBotTest {
         assertThat(String.join(" ", chatBot.tokenizeText("I am searching for Simpson, Bart")))
                 .isEqualTo("searching simpson bart");
     }
+
     @Test
     public void createSearchResultNameAndType() {
         assertThat(chatBot.createSearchResult("I am searching all Diagnosis for Homer").patientName().toString()).isEqualTo("Homer Simpson");

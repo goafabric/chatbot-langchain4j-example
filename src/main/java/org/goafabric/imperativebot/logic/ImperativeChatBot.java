@@ -1,5 +1,6 @@
 package org.goafabric.imperativebot.logic;
 
+import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.jetbrains.annotations.Nullable;
@@ -14,7 +15,18 @@ public class ImperativeChatBot {
 
     private final ImperativeTool imperativeTool = new ImperativeTool();
 
-    public SearchResult find(String text) {
+    public List<MedicalRecord> find(String text, String prevPatientId) {
+        var searchResult = createSearchResult(text);
+
+        searchResult.displayText();
+        searchResult.medicalRecordTypes();
+
+        var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.id();
+
+        return imperativeTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
+    }
+
+    public SearchResult createSearchResult(String text) {
         var tokens = tokeniceText(text);
 
         var medicalRecordTypes = searchMedicalRecordType(tokens);

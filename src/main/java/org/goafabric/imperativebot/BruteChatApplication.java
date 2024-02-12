@@ -1,4 +1,6 @@
-package org.goafabric.imperativebot.logic;
+package org.goafabric.imperativebot;
+
+import org.goafabric.imperativebot.logic.BruteChatBot;
 
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ import java.util.Scanner;
  */
 
 
-public class ChatApplication {
+public class BruteChatApplication {
     public static void main(String[] args){
         var  chatBot = new BruteChatBot();
         var  scanner = new Scanner(System.in);

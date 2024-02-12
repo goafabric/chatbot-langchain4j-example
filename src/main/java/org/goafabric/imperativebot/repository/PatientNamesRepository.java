@@ -12,8 +12,8 @@ public class PatientNamesRepository {
 
     public PatientNamesRepository() {
         this.patientNames = new ArrayList<>();
-        patientNames.add(new PatientName("1", "Homer", "Simpson"));
-        patientNames.add(new PatientName("2", "Bart", "Simpson"));
+        patientNames.add(new PatientName("1", "Bart", "Simpson"));
+        patientNames.add(new PatientName("2", "Homer", "Simpson"));
         patientNames.add(new PatientName("3", "Monty", "Burns"));
     }
 

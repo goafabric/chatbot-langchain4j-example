@@ -15,7 +15,7 @@ class BruteChatToolTest {
     public void findPatient() {
         assertThat(tool.findPatient("Homer").toString()).isEqualTo("Homer Simpson");
         assertThat(tool.findPatient("Bart").toString()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatient("Simpson").toString()).isEqualTo("Homer Simpson");
+        assertThat(tool.findPatient("Simpson").toString()).isEqualTo("Bart Simpson");
         assertThat(tool.findPatient("Monty").toString()).isEqualTo("Monty Burns");
         assertThat(tool.findPatient("none")).isNull();
     }

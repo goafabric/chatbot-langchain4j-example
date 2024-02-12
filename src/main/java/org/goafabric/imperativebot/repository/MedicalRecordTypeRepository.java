@@ -10,7 +10,7 @@ public class MedicalRecordTypeRepository {
             case "anamnesis", "anamneses", "anamnese", "anamnesen" -> MedicalRecordType.ANAMNESIS;
             case "condition", "conditions", "diagnosis", "diagnose", "diagnosen" -> MedicalRecordType.CONDITION;
             case "charge", "charges", "chargeitem", "chargeitems", "leistung", "leistungen" -> MedicalRecordType.CHARGEITEM;
-            case "finding", "findings", "befund", "befunden" -> MedicalRecordType.FINDING;
+            case "finding", "findings", "befund", "befunde" -> MedicalRecordType.FINDING;
             case "therapy", "therapies", "therapie", "therapien" -> MedicalRecordType.THERAPY;
             case "bodymetrics" -> MedicalRecordType.BODY_METRICS;
             //case null -> throw new IllegalArgumentException("Type should not be null");

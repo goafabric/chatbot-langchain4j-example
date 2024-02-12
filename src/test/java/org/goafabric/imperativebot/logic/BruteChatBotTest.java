@@ -10,7 +10,7 @@ class BruteChatBotTest {
 
     @Test
     public void reduceText() {
-        assertThat(String.join(" ", chatBot.tokeniceText("I am searching for Simpson, Bart")))
+        assertThat(String.join(" ", chatBot.tokenizeText("I am searching for Simpson, Bart")))
                 .isEqualTo("searching simpson bart");
     }
     @Test
@@ -34,13 +34,15 @@ class BruteChatBotTest {
     public void find() {
         var prevPatientId = "1";
 
-        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis for Homer that contain nothing", prevPatientId)).isEmpty();
-        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis", prevPatientId)).isNotEmpty();
+        assertThat(chatBot.chat("hi", prevPatientId)).isEmpty();
+        assertThat(chatBot.chat("I am searching for Bart", prevPatientId)).isNotEmpty();
         assertThat(chatBot.chat("I am searching for all data for Monty", prevPatientId)).isEmpty(); //monty has no data attached
 
-        assertThat(chatBot.chat("hi", prevPatientId)).isEmpty();
+        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis for Bart that contain nothing", prevPatientId)).isEmpty();
+        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis", prevPatientId)).isNotEmpty();
 
-        var medicalRecords1 = chatBot.chat("I am searching all Diagnosis and Anamnesis for Homer that contain sugar and mice", prevPatientId);
+
+        var medicalRecords1 = chatBot.chat("I am searching all Diagnosis and Anamnesis for Bart that contain sugar and mice", prevPatientId);
         //medicalRecords1.stream().forEach(m -> System.out.println(m.toString()));
         assertThat(medicalRecords1).hasSize(1);
 

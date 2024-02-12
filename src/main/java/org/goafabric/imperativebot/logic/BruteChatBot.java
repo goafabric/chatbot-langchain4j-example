@@ -12,33 +12,32 @@ import java.util.Objects;
 
 
 public class BruteChatBot {
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {}
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {
+        public boolean nothingFound() {
+            return (patientName == null && medicalRecordTypes().isEmpty() && displayText.isEmpty());
+        }
+    }
 
     private final BruteChatTool bruteChatTool = new BruteChatTool();
 
     public List<MedicalRecord> chat(String text, String prevPatientId) {
         var searchResult = createSearchResult(text);
-        if (searchResult.medicalRecordTypes().isEmpty() && searchResult.displayText.equals("")) {
-            return new ArrayList<>();
-        }
-
         var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.id();
-
-        return bruteChatTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
+        return searchResult.nothingFound()
+                ? new ArrayList<>()
+                : bruteChatTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
     }
 
     public SearchResult createSearchResult(String text) {
-        var tokens = tokeniceText(text);
-
+        var tokens = tokenizeText(text);
         var medicalRecordTypes = searchMedicalRecordType(tokens);
-        var patient = searchPatient(tokens);
-
         var displayText = searchDisplayText(tokens);
+        var patient = searchPatient(tokens);
 
         return new SearchResult(patient, medicalRecordTypes, displayText);
     }
 
-    public List<String> tokeniceText(String input) {
+    public List<String> tokenizeText(String input) {
         var text = input.replaceAll(",", "").toLowerCase();
         return Arrays.stream(text.split(" "))
                 .filter(token -> token.length() > 3).toList();

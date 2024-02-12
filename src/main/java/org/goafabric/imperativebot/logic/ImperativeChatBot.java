@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 public class ImperativeChatBot {
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {}
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {}
 
     private final ImperativeTool imperativeTool = new ImperativeTool();
 
@@ -20,14 +20,17 @@ public class ImperativeChatBot {
         var medicalRecordTypes = searchMedicalRecordType(tokens);
         var patient = searchPatient(tokens);
 
-        return new SearchResult(patient, medicalRecordTypes);
+        var displayText = searchDisplayText(tokens);
+
+        return new SearchResult(patient, medicalRecordTypes, displayText);
     }
 
-    /*
-    public List<String> reduce(List<String> tokens, List<String> search) {
-        return tokens.stream().filter(token -> !search.contains(token)).toList();
+    public List<String> tokeniceText(String input) {
+        var text = input.replaceAll(",", "").toLowerCase();
+        return Arrays.stream(text.split(" "))
+                .filter(token -> token.length() > 3).toList();
     }
-     */
+
 
     @Nullable
     private PatientName searchPatient(List<String> tokens) {
@@ -46,11 +49,22 @@ public class ImperativeChatBot {
                 .toList();
     }
 
-    public List<String> tokeniceText(String input) {
-        var text = input.replaceAll(",", "");
-        return Arrays.stream(text.split(" "))
-                .filter(token -> token.length() > 3).toList();
+    private String searchDisplayText(List<String> tokens) {
+        var keywords = Arrays.asList("text", "contain", "contains");
+
+        for (int i = 0; i < tokens.size(); i++) {
+            String token =  tokens.get(i);
+            if (keywords.contains(token) && (i +1 < tokens.size())) {
+                if (!keywords.contains(tokens.get(i+1))) {
+                    return tokens.get(i + 1);
+                }
+            }
+        }
+
+        return "";
     }
+
+
 
 
 }

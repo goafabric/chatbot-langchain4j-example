@@ -11,16 +11,23 @@ class ImperativeChatBotTest {
     @Test
     public void reduceText() {
         assertThat(String.join(" ", chatBot.tokeniceText("I am searching for Simpson, Bart")))
-                .isEqualTo("searching Simpson Bart");
+                .isEqualTo("searching simpson bart");
     }
     @Test
-    public void findText() {
-        assertThat(chatBot.find("I am searching all diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
-        assertThat(chatBot.find("I am searching all diagnosis and anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.CONDITION);
-        assertThat(chatBot.find("I am searching all diagnosis and anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.ANAMNESIS);
+    public void findNameAndType() {
+        assertThat(chatBot.find("I am searching all Diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
+        assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.CONDITION);
+        assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.ANAMNESIS);
 
         assertThat(chatBot.find("").patientName()).isNull();
         assertThat(chatBot.find("").medicalRecordTypes()).isEmpty();
+    }
+
+    @Test
+    public void findDisplayText() {
+        assertThat(chatBot.find("I am searching for all Diagnosis with text sugar and mice").displayText()).isEqualTo("sugar");
+        assertThat(chatBot.find("I am searching for all Diagnosis that contain sugar and mice").displayText()).isEqualTo("sugar");
+        assertThat(chatBot.find("I am searching for all Diagnosis that contain text sugar and mice").displayText()).isEqualTo("sugar");
     }
 
 }

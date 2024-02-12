@@ -42,7 +42,7 @@ public class BruteChatBot {
                 .filter(token -> token.length() > 3).toList();
     }
 
-    //search record types from a static swtiched list of matching keywords
+    //search record types with the tokens, from a static switched list of matching keywords
     private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
         return tokens.stream()
                 .map(bruteChatTool::findMedicalRecordTypeViaKeyords)
@@ -50,7 +50,7 @@ public class BruteChatBot {
                 .toList();
     }
 
-    //brute force search with the tokens, for patient names inside the db, returns first hit
+    //brute force search with the tokens, for patient names inside the db, returns first hit and only via GivenName OR FamilyName
     private PatientName searchPatient(List<String> tokens) {
         return tokens.stream()
                 .map(bruteChatTool::findPatientViaDatabaseBruteForce)
@@ -63,11 +63,8 @@ public class BruteChatBot {
     private String searchDisplayText(List<String> tokens) {
         var keywords = Arrays.asList("text", "contain", "contains");
         for (int i = 0; i < tokens.size() - 1; i++) {
-            var token = tokens.get(i);
-            var nextToken = tokens.get(i + 1);
-
-            if (keywords.contains(token) && !keywords.contains(nextToken)) {
-                return nextToken;
+            if (keywords.contains(tokens.get(i)) && !keywords.contains(tokens.get(i + 1))) {
+                return tokens.get(i + 1);
             }
         }
         return "";

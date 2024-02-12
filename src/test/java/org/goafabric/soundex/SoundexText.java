@@ -1,4 +1,4 @@
-package org.goafabric.imperativebot.logic;
+package org.goafabric.soundex;
 
 import org.apache.commons.codec.EncoderException;
 import org.goafabric.soundex.phonetic.MyColognePhonetic;

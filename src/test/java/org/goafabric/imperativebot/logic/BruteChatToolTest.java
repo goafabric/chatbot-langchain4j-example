@@ -13,10 +13,10 @@ class BruteChatToolTest {
 
     @Test
     public void findPatient() {
-        assertThat(tool.findPatientViaDatabaseBruteForce("Homer").toString()).isEqualTo("Homer Simpson");
-        assertThat(tool.findPatientViaDatabaseBruteForce("Bart").toString()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatientViaDatabaseBruteForce("Simpson").toString()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatientViaDatabaseBruteForce("Monty").toString()).isEqualTo("Monty Burns");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Homer").getFullName()).isEqualTo("Homer Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Bart").getFullName()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Simpson").getFullName()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Monty").getFullName()).isEqualTo("Monty Burns");
         assertThat(tool.findPatientViaDatabaseBruteForce("none")).isNull();
     }
 

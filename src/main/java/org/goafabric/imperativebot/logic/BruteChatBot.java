@@ -3,7 +3,6 @@ package org.goafabric.imperativebot.logic;
 import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,24 +42,24 @@ public class BruteChatBot {
                 .filter(token -> token.length() > 3).toList();
     }
 
+    //search record types from a static swtiched list of matching keywords
+    private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
+        return tokens.stream()
+                .map(bruteChatTool::findMedicalRecordTypeViaKeyords)
+                .filter(Objects::nonNull)
+                .toList();
+    }
 
-    @Nullable
+    //brute force search with the tokens, for patient names inside the db, returns first hit
     private PatientName searchPatient(List<String> tokens) {
         return tokens.stream()
-                .map(bruteChatTool::findPatient)
+                .map(bruteChatTool::findPatientViaDatabaseBruteForce)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
     }
 
-    @Nullable
-    private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
-        return tokens.stream()
-                .map(bruteChatTool::findByMedicalRecordType)
-                .filter(Objects::nonNull)
-                .toList();
-    }
-
+    //search display text via Keywords
     private String searchDisplayText(List<String> tokens) {
         var keywords = Arrays.asList("text", "contain", "contains");
         for (int i = 0; i < tokens.size() - 1; i++) {

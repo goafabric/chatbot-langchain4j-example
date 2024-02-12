@@ -13,18 +13,18 @@ class BruteChatToolTest {
 
     @Test
     public void findPatient() {
-        assertThat(tool.findPatient("Homer").toString()).isEqualTo("Homer Simpson");
-        assertThat(tool.findPatient("Bart").toString()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatient("Simpson").toString()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatient("Monty").toString()).isEqualTo("Monty Burns");
-        assertThat(tool.findPatient("none")).isNull();
+        assertThat(tool.findPatientViaDatabaseBruteForce("Homer").toString()).isEqualTo("Homer Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Bart").toString()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Simpson").toString()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Monty").toString()).isEqualTo("Monty Burns");
+        assertThat(tool.findPatientViaDatabaseBruteForce("none")).isNull();
     }
 
     @Test
     public void findByMedicalRecordType() {
-        assertThat(tool.findByMedicalRecordType("Anamnesis")).isEqualTo(MedicalRecordType.ANAMNESIS);
-        assertThat(tool.findByMedicalRecordType("Diagnosis")).isEqualTo(MedicalRecordType.CONDITION);
-        assertThat(tool.findByMedicalRecordType("Befund")).isEqualTo(MedicalRecordType.FINDING);
+        assertThat(tool.findMedicalRecordTypeViaKeyords("Anamnesis")).isEqualTo(MedicalRecordType.ANAMNESIS);
+        assertThat(tool.findMedicalRecordTypeViaKeyords("Diagnosis")).isEqualTo(MedicalRecordType.CONDITION);
+        assertThat(tool.findMedicalRecordTypeViaKeyords("Befund")).isEqualTo(MedicalRecordType.FINDING);
     }
 
     @Test

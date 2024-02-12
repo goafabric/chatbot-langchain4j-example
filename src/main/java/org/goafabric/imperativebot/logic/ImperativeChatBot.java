@@ -1,14 +1,8 @@
 package org.goafabric.imperativebot.logic;
 
-import org.goafabric.imperativebot.repository.MedicalRecordRepository;
-import org.goafabric.imperativebot.repository.MedicalRecordTypeRepository;
-import org.goafabric.imperativebot.repository.PatientNamesRepository;
-import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,15 +10,9 @@ import java.util.Objects;
 
 
 public class ImperativeChatBot {
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {
-    }
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {}
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
-    private final PatientNamesRepository patientNamesRepository = new PatientNamesRepository();
-    private final MedicalRecordTypeRepository medicalRecordTypeRepository = new MedicalRecordTypeRepository();
-    private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
-
+    private final ImperativeTool imperativeTool = new ImperativeTool();
 
     public SearchResult find(String text) {
         var tokens = tokeniceText(text);
@@ -44,7 +32,7 @@ public class ImperativeChatBot {
     @Nullable
     private PatientName searchPatient(List<String> tokens) {
         return tokens.stream()
-                .map(this::findPatient)
+                .map(imperativeTool::findPatient)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
@@ -53,7 +41,7 @@ public class ImperativeChatBot {
     @Nullable
     private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
         return tokens.stream()
-                .map(this::findByMedicalRecordType)
+                .map(imperativeTool::findByMedicalRecordType)
                 .filter(Objects::nonNull)
                 .toList();
     }
@@ -64,16 +52,5 @@ public class ImperativeChatBot {
                 .filter(token -> token.length() > 3).toList();
     }
 
-    public PatientName findPatient(String name) {
-        return patientNamesRepository.findByName(name).orElse(null);
-    }
 
-
-    public MedicalRecordType findByMedicalRecordType(String type) {
-        return medicalRecordTypeRepository.findByType(type);
-    }
-
-    public List<MedicalRecord> findByPatientIdAndDisplayAndType(String patientId, String display, List<MedicalRecordType> types) {
-        return medicalRecordRepository.findByPatientIdAndDisplayAndType(patientId, display, types);
-    }
 }

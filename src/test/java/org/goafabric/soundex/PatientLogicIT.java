@@ -25,6 +25,7 @@ class PatientLogicIT {
     @BeforeAll
     public void init() {
         patientLogic.save(new PatientEo(null, "Homer", null, "Simpson", null));
+        patientLogic.save(new PatientEo(null, "Bart", null, "Simpson", null));
         patientLogic.save(new PatientEo(null, "Monty", null,"Burns", null));
         patientLogic.save(new PatientEo(null, "Michael", null,"Meyers", null));
         patientLogic.save(new PatientEo(null, "Hans", null, "Müller", null));

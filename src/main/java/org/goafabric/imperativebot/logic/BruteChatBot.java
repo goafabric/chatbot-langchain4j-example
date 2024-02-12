@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 
 public class BruteChatBot {
@@ -62,12 +63,12 @@ public class BruteChatBot {
     //search display text via Keywords
     private String searchDisplayText(List<String> tokens) {
         var keywords = Arrays.asList("text", "contain", "contains");
-        for (int i = 0; i < tokens.size() - 1; i++) {
-            if (keywords.contains(tokens.get(i)) && !keywords.contains(tokens.get(i + 1))) {
-                return tokens.get(i + 1);
-            }
-        }
-        return "";
+        return IntStream.range(0, tokens.size() - 1)
+                .filter(i -> keywords.contains(tokens.get(i)) && !keywords.contains(tokens.get(i + 1)))
+                .mapToObj(i -> tokens.get(i + 1))
+                //.mapToObj(index -> String.join(" ", tokens.subList(index + 1, tokens.size())))
+                .findFirst()
+                .orElse("");
     }
 
 }

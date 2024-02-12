@@ -34,13 +34,19 @@ class BruteChatBotTest {
     public void find() {
         var prevPatientId = "1";
 
-        assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis for Homer that contain nothing", prevPatientId)).isEmpty();
-        assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis", prevPatientId)).isNotEmpty();
+        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis for Homer that contain nothing", prevPatientId)).isEmpty();
+        assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis", prevPatientId)).isNotEmpty();
+        assertThat(chatBot.chat("I am searching for all data for Monty", prevPatientId)).isEmpty(); //monty has no data attached
 
+        assertThat(chatBot.chat("hi", prevPatientId)).isEmpty();
 
-        var medicalRecords1 = chatBot.find("I am searching all Diagnosis and Anamnesis for Homer that contain sugar and mice", prevPatientId);
-        medicalRecords1.stream().forEach(m -> System.out.println(m.toString()));
+        var medicalRecords1 = chatBot.chat("I am searching all Diagnosis and Anamnesis for Homer that contain sugar and mice", prevPatientId);
+        //medicalRecords1.stream().forEach(m -> System.out.println(m.toString()));
         assertThat(medicalRecords1).hasSize(1);
+
+        var medicalRecords2 = chatBot.chat("I am searching all Diagnosis and Anamnesis for Simpson", prevPatientId);
+        //medicalRecords2.stream().forEach(m -> System.out.println(m.toString()));
+        assertThat(medicalRecords2).hasSize(6);
 
     }
 

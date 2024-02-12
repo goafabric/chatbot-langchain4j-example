@@ -5,6 +5,7 @@ import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -15,11 +16,11 @@ public class BruteChatBot {
 
     private final BruteChatTool bruteChatTool = new BruteChatTool();
 
-    public List<MedicalRecord> find(String text, String prevPatientId) {
+    public List<MedicalRecord> chat(String text, String prevPatientId) {
         var searchResult = createSearchResult(text);
-
-        searchResult.displayText();
-        searchResult.medicalRecordTypes();
+        if (searchResult.medicalRecordTypes().isEmpty() && searchResult.displayText.equals("")) {
+            return new ArrayList<>();
+        }
 
         var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.id();
 

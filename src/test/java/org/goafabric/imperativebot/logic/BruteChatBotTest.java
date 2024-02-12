@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ImperativeChatBotTest {
-    private ImperativeChatBot chatBot = new ImperativeChatBot();
+class BruteChatBotTest {
+    private BruteChatBot chatBot = new BruteChatBot();
 
     @Test
     public void reduceText() {

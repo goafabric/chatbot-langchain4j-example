@@ -9,7 +9,7 @@ import org.goafabric.imperativebot.repository.entity.PatientName;
 
 import java.util.List;
 
-public class ImperativeTool {
+public class BruteChatTool {
     private final PatientNamesRepository patientNamesRepository = new PatientNamesRepository();
     private final MedicalRecordTypeRepository medicalRecordTypeRepository = new MedicalRecordTypeRepository();
     private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();

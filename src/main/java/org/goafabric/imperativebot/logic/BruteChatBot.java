@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ImperativeChatBot {
+public class BruteChatBot {
     public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {}
 
-    private final ImperativeTool imperativeTool = new ImperativeTool();
+    private final BruteChatTool bruteChatTool = new BruteChatTool();
 
     public List<MedicalRecord> find(String text, String prevPatientId) {
         var searchResult = createSearchResult(text);
@@ -23,7 +23,7 @@ public class ImperativeChatBot {
 
         var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.id();
 
-        return imperativeTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
+        return bruteChatTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
     }
 
     public SearchResult createSearchResult(String text) {
@@ -47,7 +47,7 @@ public class ImperativeChatBot {
     @Nullable
     private PatientName searchPatient(List<String> tokens) {
         return tokens.stream()
-                .map(imperativeTool::findPatient)
+                .map(bruteChatTool::findPatient)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
@@ -56,7 +56,7 @@ public class ImperativeChatBot {
     @Nullable
     private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
         return tokens.stream()
-                .map(imperativeTool::findByMedicalRecordType)
+                .map(bruteChatTool::findByMedicalRecordType)
                 .filter(Objects::nonNull)
                 .toList();
     }

@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ImperativeToolTest {
-    private ImperativeTool tool = new ImperativeTool();
+class BruteChatToolTest {
+    private BruteChatTool tool = new BruteChatTool();
 
     @Test
     public void findPatient() {

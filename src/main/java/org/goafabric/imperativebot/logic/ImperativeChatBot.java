@@ -51,20 +51,15 @@ public class ImperativeChatBot {
 
     private String searchDisplayText(List<String> tokens) {
         var keywords = Arrays.asList("text", "contain", "contains");
+        for (int i = 0; i < tokens.size() - 1; i++) {
+            var token = tokens.get(i);
+            var nextToken = tokens.get(i + 1);
 
-        for (int i = 0; i < tokens.size(); i++) {
-            String token =  tokens.get(i);
-            if (keywords.contains(token) && (i +1 < tokens.size())) {
-                if (!keywords.contains(tokens.get(i+1))) {
-                    return tokens.get(i + 1);
-                }
+            if (keywords.contains(token) && !keywords.contains(nextToken)) {
+                return nextToken;
             }
         }
-
         return "";
     }
-
-
-
 
 }

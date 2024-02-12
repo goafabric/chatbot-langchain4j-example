@@ -1,7 +1,12 @@
 package org.goafabric.imperativebot.logic;
 
+import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,5 +47,17 @@ class ImperativeChatBotTest {
 
     //todo text search + test Data for medical record repo + testdata
 
+    @Test
+    public void findByPatientIdAndDisplayAndType() {
+        List<MedicalRecord> recs1 = chatBot.findByPatientIdAndDisplayAndType("1", "fatty", new ArrayList<>());
+        assertThat(recs1).hasSize(1);
+        recs1.forEach(r -> System.out.println(r));
 
+        List<MedicalRecord> recs2 = chatBot.findByPatientIdAndDisplayAndType("1", "sugar", Arrays.asList(MedicalRecordType.ANAMNESIS, MedicalRecordType.FINDING));
+        recs2.forEach(r -> System.out.println(r));
+        assertThat(recs2).hasSize(1);
+
+        assertThat(chatBot.findByPatientIdAndDisplayAndType("1", "", new ArrayList<>())).hasSize(11);
+
+    }
 }

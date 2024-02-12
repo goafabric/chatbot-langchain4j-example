@@ -1,7 +1,9 @@
 package org.goafabric.imperativebot.logic;
 
+import org.goafabric.imperativebot.repository.MedicalRecordRepository;
 import org.goafabric.imperativebot.repository.MedicalRecordTypeRepository;
 import org.goafabric.imperativebot.repository.PatientNamesRepository;
+import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.jetbrains.annotations.Nullable;
@@ -14,12 +16,14 @@ import java.util.Objects;
 
 
 public class ImperativeChatBot {
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {}
+    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes) {
+    }
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private PatientNamesRepository patientNamesRepository = new PatientNamesRepository();
-    private MedicalRecordTypeRepository medicalRecordTypeRepository = new MedicalRecordTypeRepository();
+    private final PatientNamesRepository patientNamesRepository = new PatientNamesRepository();
+    private final MedicalRecordTypeRepository medicalRecordTypeRepository = new MedicalRecordTypeRepository();
+    private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
 
     public SearchResult find(String text) {
@@ -67,5 +71,9 @@ public class ImperativeChatBot {
 
     public MedicalRecordType findByMedicalRecordType(String type) {
         return medicalRecordTypeRepository.findByType(type);
+    }
+
+    public List<MedicalRecord> findByPatientIdAndDisplayAndType(String patientId, String display, List<MedicalRecordType> types) {
+        return medicalRecordRepository.findByPatientIdAndDisplayAndType(patientId, display, types);
     }
 }

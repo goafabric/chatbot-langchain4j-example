@@ -15,7 +15,10 @@ public class ImperativeTool {
     private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
     public PatientName findPatient(String name) {
-        return patientNamesRepository.findByName(name).orElse(null);
+        var patientName = patientNamesRepository.findByName(name, "").orElse(null);
+        return patientName != null
+                ? patientName
+                : patientNamesRepository.findByName("", name).orElse(null);
     }
 
 

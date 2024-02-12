@@ -15,7 +15,7 @@ class ImperativeChatBotTest {
     }
     @Test
     public void findNameAndType() {
-        assertThat(chatBot.find("I am searching all Diagnosis for Homer").patientName().name()).isEqualTo("Homer Simpson");
+        assertThat(chatBot.find("I am searching all Diagnosis for Homer").patientName().toString()).isEqualTo("Homer Simpson");
         assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.CONDITION);
         assertThat(chatBot.find("I am searching all Diagnosis and Anamnesis for Homer").medicalRecordTypes()).contains(MedicalRecordType.ANAMNESIS);
 

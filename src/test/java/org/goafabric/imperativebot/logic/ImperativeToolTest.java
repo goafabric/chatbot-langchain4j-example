@@ -15,10 +15,10 @@ class ImperativeToolTest {
 
     @Test
     public void findPatient() {
-        assertThat(tool.findPatient("Homer").name()).isEqualTo("Homer Simpson");
-        assertThat(tool.findPatient("Bart").name()).isEqualTo("Bart Simpson");
-        assertThat(tool.findPatient("Simpson").name()).isEqualTo("Homer Simpson");
-        assertThat(tool.findPatient("Monty").name()).isEqualTo("Monty Burns");
+        assertThat(tool.findPatient("Homer").toString()).isEqualTo("Homer Simpson");
+        assertThat(tool.findPatient("Bart").toString()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatient("Simpson").toString()).isEqualTo("Homer Simpson");
+        assertThat(tool.findPatient("Monty").toString()).isEqualTo("Monty Burns");
         assertThat(tool.findPatient("none")).isNull();
     }
 

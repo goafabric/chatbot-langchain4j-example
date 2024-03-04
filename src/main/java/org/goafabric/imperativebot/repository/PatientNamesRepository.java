@@ -1,5 +1,6 @@
 package org.goafabric.imperativebot.repository;
 
+import org.apache.commons.codec.language.ColognePhonetic;
 import org.goafabric.imperativebot.repository.entity.PatientName;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -10,12 +11,13 @@ import java.util.List;
 @Component
 public class PatientNamesRepository {
     private List<PatientName> patientNames;
+    private final ColognePhonetic phonetic = new ColognePhonetic();
 
     public PatientNamesRepository() {
         this.patientNames = new ArrayList<>();
-        patientNames.add(new PatientName("1", "Monty", "Burns"));
-        patientNames.add(new PatientName("2", "Bart", "Simpson"));
-        patientNames.add(new PatientName("3", "Homer", "Simpson"));
+        patientNames.add(new PatientName("1", "Monty", phonetic.encode("Monty"), "Burns", phonetic.encode("Burns")));
+        patientNames.add(new PatientName("2", "Bart", phonetic.encode("Bart"), "Simpson", phonetic.encode("Simpson")));
+        patientNames.add(new PatientName("3", "Homer", phonetic.encode("Homer"), "Simpson", phonetic.encode("Simpson")));
     }
 
     public List<PatientName> findByFamilyNameAndGivenName(String familyName, String givenName) {
@@ -29,4 +31,5 @@ public class PatientNamesRepository {
             return new ArrayList<>();
         }
     }
+
 }

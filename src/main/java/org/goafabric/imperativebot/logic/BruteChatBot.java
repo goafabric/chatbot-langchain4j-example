@@ -2,7 +2,7 @@ package org.goafabric.imperativebot.logic;
 
 import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
-import org.goafabric.imperativebot.repository.entity.PatientName;
+import org.goafabric.imperativebot.repository.entity.PatientEo;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class BruteChatBot {
         this.bruteChatTool = bruteChatTool;
     }
 
-    public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {
+    public record SearchResult(PatientEo patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {
         public boolean nothingFound() {
             return (patientName == null && medicalRecordTypes().isEmpty() && displayText.isEmpty());
         }
@@ -28,7 +28,7 @@ public class BruteChatBot {
 
     public List<MedicalRecord> chat(String text, String prevPatientId) {
         var searchResult = createSearchResult(text);
-        var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.id();
+        var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.getId();
         return searchResult.nothingFound()
                 ? new ArrayList<>()
                 : bruteChatTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
@@ -58,7 +58,7 @@ public class BruteChatBot {
     }
 
     //brute force search with the tokens, for patient names inside the db, returns first hit and only via GivenName OR FamilyName
-    private PatientName searchPatient(List<String> tokens) {
+    private PatientEo searchPatient(List<String> tokens) {
         return tokens.stream()
                 .map(bruteChatTool::findPatientViaDatabaseBruteForce)
                 .filter(Objects::nonNull)

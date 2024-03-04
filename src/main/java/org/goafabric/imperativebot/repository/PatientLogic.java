@@ -1,8 +1,7 @@
-package org.goafabric.phonetic.logic;
+package org.goafabric.imperativebot.repository;
 
-import org.goafabric.phonetic.phonetic.MyColognePhonetic;
-import org.goafabric.phonetic.repository.PatientEo;
-import org.goafabric.phonetic.repository.PatientRepository;
+import org.goafabric.imperativebot.phonetic.MyColognePhonetic;
+import org.goafabric.imperativebot.repository.entity.PatientEo;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +32,8 @@ public class PatientLogic {
     }
 
     private void createDemoData() {
-        save(new PatientEo(null, "Homer", null, "Simpson", null));
         save(new PatientEo(null, "Bart", null, "Simpson", null));
+        save(new PatientEo(null, "Homer", null, "Simpson", null));
         save(new PatientEo(null, "Monty", null,"Burns", null));
         save(new PatientEo(null, "Michael", null,"Meyers", null));
         save(new PatientEo(null, "Hans", null, "Müller", null));

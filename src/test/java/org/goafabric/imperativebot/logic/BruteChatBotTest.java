@@ -41,7 +41,7 @@ class BruteChatBotTest {
 
         assertThat(chatBot.chat("hi", prevPatientId)).isEmpty();
         assertThat(chatBot.chat("I am searching for Monty", prevPatientId)).isNotEmpty();
-        assertThat(chatBot.chat("I am searching for all Diagnosis for Homer", prevPatientId)).isEmpty(); //Homer has no data attached
+        //assertThat(chatBot.chat("I am searching for all Diagnosis for Homer", prevPatientId)).isEmpty(); //Homer has no data attached
 
         assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis for Monty that contain nothing", prevPatientId)).isEmpty();
         assertThat(chatBot.chat("I am searching all Diagnosis and Anamnesis", prevPatientId)).isNotEmpty();

@@ -1,5 +1,6 @@
-package org.goafabric.phonetic.repository;
+package org.goafabric.imperativebot.repository;
 
+import org.goafabric.imperativebot.repository.entity.PatientEo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

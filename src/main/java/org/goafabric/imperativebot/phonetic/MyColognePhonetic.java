@@ -1,4 +1,4 @@
-package org.goafabric.phonetic.phonetic;
+package org.goafabric.imperativebot.phonetic;
 
 
 import java.util.Arrays;

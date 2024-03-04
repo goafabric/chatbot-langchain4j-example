@@ -1,4 +1,4 @@
-package org.goafabric.phonetic.repository;
+package org.goafabric.imperativebot.repository.entity;
 
 import jakarta.persistence.*;
 
@@ -41,6 +41,10 @@ public class PatientEo {
 
     public String getFamilySoundex() {
         return familySoundex;
+    }
+
+    public String getFullName() {
+        return givenName + " " + familyName;
     }
 
 

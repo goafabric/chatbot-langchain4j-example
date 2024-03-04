@@ -29,8 +29,8 @@ public class MedicalRecordRepository {
     }
 
     public List<MedicalRecord> findByPatientIdAndDisplayAndType(String patientId, String display, List<MedicalRecordType> types) {
-        var records = medicalRecords.stream().filter(medicalRecord -> medicalRecord.patientId().equals(patientId)
-                && medicalRecord.display().toLowerCase().contains(display.toLowerCase())).toList();
+        var records = medicalRecords.stream().filter(medicalRecord -> //medicalRecord.patientId().equals(patientId) &&
+                medicalRecord.display().toLowerCase().contains(display.toLowerCase())).toList();
         return !types.isEmpty() ? records.stream().filter(medicalRecord -> types.contains(medicalRecord.type())).toList()
                                 : records;
     }

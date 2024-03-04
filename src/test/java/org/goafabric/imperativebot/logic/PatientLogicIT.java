@@ -1,7 +1,7 @@
-package org.goafabric.phonetic;
+package org.goafabric.imperativebot.logic;
 
-import org.goafabric.phonetic.logic.PatientLogic;
-import org.goafabric.phonetic.repository.PatientEo;
+import org.goafabric.imperativebot.repository.PatientLogic;
+import org.goafabric.imperativebot.repository.entity.PatientEo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.slf4j.Logger;

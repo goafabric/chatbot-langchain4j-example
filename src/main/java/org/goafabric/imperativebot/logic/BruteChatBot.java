@@ -3,6 +3,7 @@ package org.goafabric.imperativebot.logic;
 import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,14 +12,19 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 
+@Component
 public class BruteChatBot {
+    private final BruteChatTool bruteChatTool;
+
+    public BruteChatBot(BruteChatTool bruteChatTool) {
+        this.bruteChatTool = bruteChatTool;
+    }
+
     public record SearchResult(PatientName patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {
         public boolean nothingFound() {
             return (patientName == null && medicalRecordTypes().isEmpty() && displayText.isEmpty());
         }
     }
-
-    private final BruteChatTool bruteChatTool = new BruteChatTool();
 
     public List<MedicalRecord> chat(String text, String prevPatientId) {
         var searchResult = createSearchResult(text);

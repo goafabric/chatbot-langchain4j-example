@@ -5,12 +5,19 @@ import org.goafabric.imperativebot.repository.PatientNamesRepository;
 import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.goafabric.imperativebot.repository.entity.PatientName;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BruteChatTool {
-    private final PatientNamesRepository patientNamesRepository = new PatientNamesRepository();
-    private final MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
+    private final PatientNamesRepository patientNamesRepository;
+    private final MedicalRecordRepository medicalRecordRepository;
+
+    public BruteChatTool(PatientNamesRepository patientNamesRepository, MedicalRecordRepository medicalRecordRepository) {
+        this.patientNamesRepository = patientNamesRepository;
+        this.medicalRecordRepository = medicalRecordRepository;
+    }
 
     public PatientName findPatientViaDatabaseBruteForce(String name) {
         var patientNames = patientNamesRepository.findByName(name, "");

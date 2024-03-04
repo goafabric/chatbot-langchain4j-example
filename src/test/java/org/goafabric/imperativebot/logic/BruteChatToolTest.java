@@ -2,14 +2,18 @@ package org.goafabric.imperativebot.logic;
 
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
 class BruteChatToolTest {
-    private BruteChatTool tool = new BruteChatTool();
+    @Autowired
+    private BruteChatTool tool;
 
     @Test
     public void findPatient() {

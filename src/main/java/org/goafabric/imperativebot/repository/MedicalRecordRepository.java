@@ -2,10 +2,12 @@ package org.goafabric.imperativebot.repository;
 
 import org.goafabric.imperativebot.repository.entity.MedicalRecord;
 import org.goafabric.imperativebot.repository.entity.MedicalRecordType;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MedicalRecordRepository {
     private final List<MedicalRecord> medicalRecords;
 

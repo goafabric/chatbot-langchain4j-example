@@ -18,13 +18,13 @@ public class PatientNamesRepository {
         patientNames.add(new PatientName("3", "Homer", "Simpson"));
     }
 
-    public List<PatientName> findByName(String givenName, String familyName) {
-        if (StringUtils.hasText(givenName)) {
-            return patientNames.stream()
-                    .filter(person -> person.givenName().toLowerCase().contains(givenName.toLowerCase())).toList();
-        } else if (StringUtils.hasText(familyName)) {
+    public List<PatientName> findByFamilyNameAndGivenName(String familyName, String givenName) {
+        if (StringUtils.hasText(familyName)) {
             return patientNames.stream()
                     .filter(person -> person.familyName().toLowerCase().contains(familyName.toLowerCase())).toList();
+        }else if (StringUtils.hasText(givenName)) {
+            return patientNames.stream()
+                    .filter(person -> person.givenName().toLowerCase().contains(givenName.toLowerCase())).toList();
         } else {
             return new ArrayList<>();
         }

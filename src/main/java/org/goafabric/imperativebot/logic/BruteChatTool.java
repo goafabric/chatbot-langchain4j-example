@@ -20,11 +20,11 @@ public class BruteChatTool {
     }
 
     public PatientName findPatientViaDatabaseBruteForce(String name) {
-        var patientNames = patientNamesRepository.findByName(name, "");
+        var patientNames = patientNamesRepository.findByFamilyNameAndGivenName(name, "");
         if (!patientNames.isEmpty()) {
             return patientNames.get(0);
         } else {
-            var patientNames2 = patientNamesRepository.findByName("", name);
+            var patientNames2 = patientNamesRepository.findByFamilyNameAndGivenName("", name);
             return !patientNames2.isEmpty() ? patientNames2.get(0) : null;
         }
     }

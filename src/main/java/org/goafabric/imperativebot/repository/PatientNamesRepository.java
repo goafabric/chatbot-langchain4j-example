@@ -22,11 +22,15 @@ public class PatientNamesRepository {
 
     public List<PatientName> findByFamilyNameAndGivenName(String familyName, String givenName) {
         if (StringUtils.hasText(familyName)) {
-            return patientNames.stream()
+            var result = patientNames.stream()
                     .filter(person -> person.familyName().toLowerCase().contains(familyName.toLowerCase())).toList();
+            return !result.isEmpty() ? result
+                    : patientNames.stream().filter(person -> person.familySoundex().equals(phonetic.encode(familyName))).toList();
         }else if (StringUtils.hasText(givenName)) {
-            return patientNames.stream()
+            var result = patientNames.stream()
                     .filter(person -> person.givenName().toLowerCase().contains(givenName.toLowerCase())).toList();
+            return !result.isEmpty() ? result
+                    : patientNames.stream().filter(person -> person.givenSoundex().equals(phonetic.encode(givenName))).toList();
         } else {
             return new ArrayList<>();
         }

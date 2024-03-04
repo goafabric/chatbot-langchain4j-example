@@ -1,4 +1,4 @@
-package org.goafabric.soundex.repository;
+package org.goafabric.phonetic.repository;
 
 import jakarta.persistence.*;
 

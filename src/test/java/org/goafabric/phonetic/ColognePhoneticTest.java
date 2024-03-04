@@ -1,10 +1,10 @@
-package org.goafabric.soundex;
+package org.goafabric.phonetic;
 
 import org.apache.commons.codec.EncoderException;
-import org.goafabric.soundex.phonetic.MyColognePhonetic;
+import org.goafabric.phonetic.phonetic.MyColognePhonetic;
 import org.junit.jupiter.api.Test;
 
-public class SoundexText {
+public class ColognePhoneticTest {
     @Test
     public void test() throws EncoderException {
         MyColognePhonetic phonetic = new MyColognePhonetic();

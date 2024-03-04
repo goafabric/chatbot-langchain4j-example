@@ -1,4 +1,4 @@
-package org.goafabric.soundex.repository;
+package org.goafabric.phonetic.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

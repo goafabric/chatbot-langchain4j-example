@@ -1,4 +1,4 @@
-package org.goafabric.soundex;
+package org.goafabric.phonetic;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

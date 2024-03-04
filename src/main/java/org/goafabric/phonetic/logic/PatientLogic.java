@@ -1,8 +1,8 @@
-package org.goafabric.soundex.logic;
+package org.goafabric.phonetic.logic;
 
-import org.goafabric.soundex.phonetic.MyColognePhonetic;
-import org.goafabric.soundex.repository.PatientEo;
-import org.goafabric.soundex.repository.PatientRepository;
+import org.goafabric.phonetic.phonetic.MyColognePhonetic;
+import org.goafabric.phonetic.repository.PatientEo;
+import org.goafabric.phonetic.repository.PatientRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,7 @@
-package org.goafabric.soundex;
+package org.goafabric.phonetic;
 
-import org.goafabric.soundex.logic.PatientLogic;
-import org.goafabric.soundex.repository.PatientEo;
+import org.goafabric.phonetic.logic.PatientLogic;
+import org.goafabric.phonetic.repository.PatientEo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

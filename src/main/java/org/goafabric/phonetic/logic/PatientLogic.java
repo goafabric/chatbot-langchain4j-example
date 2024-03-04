@@ -17,21 +17,26 @@ public class PatientLogic {
 
     public PatientLogic(PatientRepository repository) {
         this.repository = repository;
+        createDemoData();
     }
-
+    
     public Iterable<PatientEo> findAll() {
         return repository.findAll();
     }
 
-    public List<PatientEo> findBy(String familyName) {
-        return repository.findByFamilyNameContainsIgnoreCaseOrFamilySoundex(familyName.toLowerCase(), phonetic.encode(familyName));
-    }
-
-    public List<PatientEo> findBy(String familyName, String givenName) {
+    public List<PatientEo> findByFamilyNameAndGivenName(String familyName, String givenName) {
         return repository.findByFamilyNameAndGivenName(familyName.toLowerCase(), phonetic.encode(familyName), givenName, phonetic.encode(givenName));
     }
 
     public void save(PatientEo patient) {
         repository.save(new PatientEo(patient.getId(), patient.getGivenName(), phonetic.encode(patient.getGivenName()), patient.getFamilyName(), phonetic.encode(patient.getFamilyName())));
+    }
+
+    private void createDemoData() {
+        save(new PatientEo(null, "Homer", null, "Simpson", null));
+        save(new PatientEo(null, "Bart", null, "Simpson", null));
+        save(new PatientEo(null, "Monty", null,"Burns", null));
+        save(new PatientEo(null, "Michael", null,"Meyers", null));
+        save(new PatientEo(null, "Hans", null, "Müller", null));
     }
 }

@@ -2,7 +2,6 @@ package org.goafabric.phonetic;
 
 import org.goafabric.phonetic.logic.PatientLogic;
 import org.goafabric.phonetic.repository.PatientEo;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.slf4j.Logger;
@@ -22,44 +21,34 @@ class PatientLogicIT {
     @Autowired
     private PatientLogic patientLogic;
 
-    @BeforeAll
-    public void init() {
-        patientLogic.save(new PatientEo(null, "Homer", null, "Simpson", null));
-        patientLogic.save(new PatientEo(null, "Bart", null, "Simpson", null));
-        patientLogic.save(new PatientEo(null, "Monty", null,"Burns", null));
-        patientLogic.save(new PatientEo(null, "Michael", null,"Meyers", null));
-        patientLogic.save(new PatientEo(null, "Hans", null, "Müller", null));
-
-    }
-
     @Test
     public void test() {
-        assertThat(findBy("Meyers", "")).isNotEmpty();
-        assertThat(findBy("Meiers", "")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Meyers", "")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Meiers", "")).isNotEmpty();
 
-        assertThat(findBy("Meyers", "Michael")).isNotEmpty();
-        assertThat(findBy("Meiers", "Michael")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Meyers", "Michael")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Meiers", "Michael")).isNotEmpty();
 
-        assertThat(findBy("Mey", "Mic")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Mey", "Mic")).isNotEmpty();
 
-        assertThat(findBy("Müller", "Hans")).isNotEmpty();
-        assertThat(findBy("Mueller", "Hans")).isNotEmpty();
-        assertThat(findBy("Mueller", "Hanz")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Müller", "Hans")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Mueller", "Hans")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Mueller", "Hanz")).isNotEmpty();
 
-        assertThat(findBy("Müll", "Han")).isNotEmpty();
+        assertThat(findByFamilyNameAndGivenName("Müll", "Han")).isNotEmpty();
 
-        assertThat(findBy("Mei", "")).isEmpty();
-        assertThat(findBy("Muell", "")).isEmpty();
+        assertThat(findByFamilyNameAndGivenName("Mei", "")).isEmpty();
+        assertThat(findByFamilyNameAndGivenName("Muell", "")).isEmpty();
 
-        assertThat(findBy("Hans", "Müller")).isEmpty();
-        assertThat(findBy("Michael", "Meyers")).isEmpty();
+        assertThat(findByFamilyNameAndGivenName("Hans", "Müller")).isEmpty();
+        assertThat(findByFamilyNameAndGivenName("Michael", "Meyers")).isEmpty();
 
     }
 
-    private List<PatientEo> findBy(String familyName, String givenName) {
+    private List<PatientEo> findByFamilyNameAndGivenName(String familyName, String givenName) {
         System.out.println("");
         System.out.println("searching for: " + familyName + ", " + givenName);
-        var patients = patientLogic.findBy(familyName,givenName);
+        var patients = patientLogic.findByFamilyNameAndGivenName(familyName,givenName);
         if (patients.isEmpty()) {
             System.out.println("not found");
         } else {

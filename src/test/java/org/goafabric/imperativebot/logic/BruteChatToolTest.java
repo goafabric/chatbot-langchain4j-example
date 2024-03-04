@@ -22,6 +22,9 @@ class BruteChatToolTest {
         assertThat(tool.findPatientViaDatabaseBruteForce("Simpson").getFullName()).isEqualTo("Bart Simpson");
         assertThat(tool.findPatientViaDatabaseBruteForce("Monty").getFullName()).isEqualTo("Monty Burns");
         assertThat(tool.findPatientViaDatabaseBruteForce("none")).isNull();
+
+        assertThat(tool.findPatientViaDatabaseBruteForce("Bard").getFullName()).isEqualTo("Bart Simpson");
+        assertThat(tool.findPatientViaDatabaseBruteForce("Burnz").getFullName()).isEqualTo("Monty Burns");
     }
 
     @Test

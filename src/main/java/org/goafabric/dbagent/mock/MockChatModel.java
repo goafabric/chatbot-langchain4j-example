@@ -1,4 +1,4 @@
-package org.goafabric.dbagent.ai.mock;
+package org.goafabric.dbagent.mock;
 
 import dev.langchain4j.agent.tool.ToolSpecification;
 import dev.langchain4j.data.message.AiMessage;

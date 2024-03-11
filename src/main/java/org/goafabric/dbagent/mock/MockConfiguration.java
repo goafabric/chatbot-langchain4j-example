@@ -1,4 +1,4 @@
-package org.goafabric.dbagent.ai.mock;
+package org.goafabric.dbagent.mock;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;

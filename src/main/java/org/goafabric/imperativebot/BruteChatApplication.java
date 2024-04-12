@@ -14,10 +14,15 @@ import java.util.Scanner;
 
 
 //@SpringBootApplication
+
+
 public class BruteChatApplication {
     public static void main(String[] args){
         SpringApplication.run(BruteChatApplication.class, args);
     }
+
+    //I am searching for monty
+    //I need all conditions for monty
 
     @Bean
     public CommandLineRunner init(BruteChatBot chatBot) {

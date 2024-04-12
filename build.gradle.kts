@@ -22,6 +22,7 @@ repositories {
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
+val langchain4JVersion = "0.24.0"
 dependencies {
     constraints {
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
@@ -35,13 +36,13 @@ dependencies {
     //web
     implementation("org.springframework.boot:spring-boot-starter")
     
-    implementation("dev.langchain4j:langchain4j:0.24.0")
-    implementation("dev.langchain4j:langchain4j-open-ai:0.24.0")
-    implementation("dev.langchain4j:langchain4j-ollama:0.24.0")
-    implementation("dev.langchain4j:langchain4j-local-ai:0.24.0")
+    implementation("dev.langchain4j:langchain4j:${langchain4JVersion}")
+    implementation("dev.langchain4j:langchain4j-open-ai:${langchain4JVersion}")
+    implementation("dev.langchain4j:langchain4j-ollama:${langchain4JVersion}")
+    implementation("dev.langchain4j:langchain4j-local-ai:${langchain4JVersion}")
 
     implementation("org.mapdb:mapdb:3.0.9")
-    implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:0.24.0")
+    implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:${langchain4JVersion}")
 
     //persistence
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}

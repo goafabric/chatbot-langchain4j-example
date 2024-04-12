@@ -19,7 +19,6 @@ public class ChatApplication {
             System.out.print("[Agent]: ");
             OpenAiChat.chat(userMessage);
             //OllamaChat.chat(userMessage);
-            //LocalAiChat.chat(userMessage);
         }
     }
 

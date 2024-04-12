@@ -18,15 +18,6 @@ public class OllamaChat {
         var responseHandler = new MyStreamingResponseHandler(new CountDownLatch(1));
         model.generate(prompt, responseHandler);
         responseHandler.await();
-
-        /*
-        var model = OllamaLanguageModel.builder().baseUrl("http://localhost:11434")
-                .modelName("llama2")
-                .timeout(ofSeconds(30)).build();
-        System.out.println(model.generate(prompt).content());
-         */
-
-
     }
 
 

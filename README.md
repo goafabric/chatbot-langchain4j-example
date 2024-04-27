@@ -1,18 +1,20 @@
-# requirements
+# ollama mac
 - needs a local llama2 that can be downloaded from https://ollama.ai/
-- after download poke in "ollama run llama2", this will automatically download the smallest llama2 and open a chat console
-- launch Application Class
-- also has an example for remote chatgpt with the demo key
+- after download poke in "ollama run llama3", this will automatically download the smallest llama2 and open a chat console
 
 # ollama docker (3x slower due to missing m1 gpu support)
-docker run --rm -v ~/.ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:0.1.13
-docker exec -it ollama ollama run llama2
+docker run --rm -v ~/.ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:0.1.32
+docker exec -it ollama ollama run llama3
 
 # curl
 time curl http://localhost:11434/api/generate -d '{
-"model": "llama2",
+"model": "llama3",
 "prompt": "How are you doing ?"
 }'
+
+# code
+- launch Application Class
+- also has an example for remote chatgpt with the demo key
 
 # links
 https://github.com/langchain4j/langchain4j

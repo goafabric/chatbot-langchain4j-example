@@ -12,7 +12,7 @@ public class OllamaChat {
         System.out.println("Calling local llama \uD83E\uDD99");
 
         var model = OllamaStreamingLanguageModel.builder().baseUrl("http://localhost:11434")
-                .modelName("llama2")
+                .modelName("llama3")
                 .timeout(ofSeconds(30)).build();
 
         var responseHandler = new MyStreamingResponseHandler(new CountDownLatch(1));

@@ -45,7 +45,7 @@ dependencies {
     implementation("com.h2database:h2")
 
     //tools
-    implementation("org.apache.opennlp:opennlp-tools:2.3.1")
+    //implementation("org.apache.opennlp:opennlp-tools:2.3.1")
 
     //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

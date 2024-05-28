@@ -11,9 +11,9 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class BruteChatToolTest {
+class MedicalRecordToolTest {
     @Autowired
-    private BruteChatTool tool;
+    private MedicalRecordTool tool;
 
     @Test
     public void findPatient() {

@@ -14,10 +14,10 @@ import java.util.stream.IntStream;
 
 @Component
 public class BruteChatBot {
-    private final BruteChatTool bruteChatTool;
+    private final MedicalRecordTool medicalRecordTool;
 
-    public BruteChatBot(BruteChatTool bruteChatTool) {
-        this.bruteChatTool = bruteChatTool;
+    public BruteChatBot(MedicalRecordTool medicalRecordTool) {
+        this.medicalRecordTool = medicalRecordTool;
     }
 
     public record SearchResult(PatientEo patientName, List<MedicalRecordType> medicalRecordTypes, String displayText) {
@@ -31,7 +31,7 @@ public class BruteChatBot {
         var patientId = searchResult.patientName == null ? prevPatientId : searchResult.patientName.getId();
         return searchResult.nothingFound()
                 ? new ArrayList<>()
-                : bruteChatTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
+                : medicalRecordTool.findByPatientIdAndDisplayAndType(patientId, searchResult.displayText(), searchResult.medicalRecordTypes());
     }
 
     public SearchResult createSearchResult(String text) {
@@ -43,6 +43,7 @@ public class BruteChatBot {
         return new SearchResult(patient, medicalRecordTypes, displayText);
     }
 
+    //return list of token and also replace all "," and words shorter than 3 chars
     public List<String> tokenizeText(String input) {
         var text = input.replaceAll(",", "").toLowerCase();
         return Arrays.stream(text.split(" "))
@@ -52,7 +53,7 @@ public class BruteChatBot {
     //search record types with the tokens, from a static switched list of matching keywords
     private List<MedicalRecordType> searchMedicalRecordType(List<String> tokens) {
         return tokens.stream()
-                .map(bruteChatTool::findMedicalRecordTypeViaKeyords)
+                .map(medicalRecordTool::findMedicalRecordTypeViaKeyords)
                 .filter(Objects::nonNull)
                 .toList();
     }
@@ -60,7 +61,7 @@ public class BruteChatBot {
     //brute force search with the tokens, for patient names inside the db, returns first hit and only via GivenName OR FamilyName
     private PatientEo searchPatient(List<String> tokens) {
         return tokens.stream()
-                .map(bruteChatTool::findPatientViaDatabaseBruteForce)
+                .map(medicalRecordTool::findPatientViaDatabaseBruteForce)
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);

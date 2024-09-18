@@ -17,7 +17,7 @@ public class OpenAiConfiguration {
     @Bean
     ChatLanguageModel chatModelOpenAi(DatabaseTool databaseTool) {
         return OpenAiChatModel.builder().apiKey("demo")
-                .modelName("gpt-3.5-turbo")
+                .modelName("gpt-4o-mini")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();
     }

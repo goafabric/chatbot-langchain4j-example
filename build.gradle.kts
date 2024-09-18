@@ -9,8 +9,8 @@ val baseImage = "ibm-semeru-runtimes:open-21.0.1_12-jre-focal@sha256:24d43669156
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.3.0"
-    id("io.spring.dependency-management") version "1.1.5"
+    id("org.springframework.boot") version "3.3.3"
+    id("io.spring.dependency-management") version "1.1.6"
     //id("org.graalvm.buildtools.native") version "0.10.2"
 
     id("com.google.cloud.tools.jib") version "3.4.2"
@@ -22,7 +22,7 @@ repositories {
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
-val langchain4JVersion = "0.24.0"
+val langchain4JVersion = "0.34.0"
 dependencies {
     constraints {
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")

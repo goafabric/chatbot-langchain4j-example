@@ -1,0 +1,3 @@
+#!/bin/bash
+./gradlew clean nativeCompile
+./build/native/nativeCompile/chatbot-langchain4j-example -Xmx32m

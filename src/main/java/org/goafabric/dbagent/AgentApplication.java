@@ -2,8 +2,10 @@ package org.goafabric.dbagent;
 
 import org.goafabric.dbagent.ai.DatabaseAgent;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Scanner;
@@ -36,6 +38,15 @@ public class AgentApplication {
                 System.out.print("[User]: ");
                 var agentAnswer = agent.chat(scanner.nextLine());
                 System.out.println("[Agent]: " + agentAnswer);
+            }
+        };
+    }
+
+    @Bean
+    public CommandLineRunner init(ApplicationContext context) {
+        return args -> {
+            if ((args.length > 0) && ("-check-integrity".equals(args[0]))) {
+                SpringApplication.exit(context, () -> 0);
             }
         };
     }

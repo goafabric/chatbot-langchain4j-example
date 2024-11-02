@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class BruteChatTool {
+public class MedicalRecordTool {
     private final PatientLogic patientLogic;
     private final MedicalRecordRepository medicalRecordRepository;
 
-    public BruteChatTool(PatientLogic patientLogic, MedicalRecordRepository medicalRecordRepository) {
+    public MedicalRecordTool(PatientLogic patientLogic, MedicalRecordRepository medicalRecordRepository) {
         this.patientLogic = patientLogic;
         this.medicalRecordRepository = medicalRecordRepository;
     }
@@ -22,10 +22,10 @@ public class BruteChatTool {
     public PatientEo findPatientViaDatabaseBruteForce(String name) {
         var patientNames = patientLogic.findByFamilyNameAndGivenName(name, "");
         if (!patientNames.isEmpty()) {
-            return patientNames.get(0);
+            return patientNames.getFirst();
         } else {
             var patientNames2 = patientLogic.findByFamilyNameAndGivenName("", name);
-            return !patientNames2.isEmpty() ? patientNames2.get(0) : null;
+            return !patientNames2.isEmpty() ? patientNames2.getFirst() : null;
         }
     }
 

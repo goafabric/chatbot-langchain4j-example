@@ -13,9 +13,8 @@ import java.util.Scanner;
  */
 
 
+
 //@SpringBootApplication
-
-
 public class BruteChatApplication {
     public static void main(String[] args){
         SpringApplication.run(BruteChatApplication.class, args);

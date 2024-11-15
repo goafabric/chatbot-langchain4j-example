@@ -1,6 +1,6 @@
 # ollama mac
 - needs a local llama3 that can be downloaded from https://ollama.ai/
-- after download poke in "ollama run llama3.1", this will automatically download the smallest llama2 and open a chat console
+- after download poke in "ollama run llama3.2", this will automatically download the smallest llama2 and open a chat console
 - also see: https://github.com/ollama/ollama
 
 # ollama docker (3x slower due to missing m1 gpu support)

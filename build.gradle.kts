@@ -33,7 +33,7 @@ dependencies {
     }
 }
 
-val langchain4JVersion = "0.35.0"
+val langchain4JVersion = "1.0.0-alpha1"
 
 dependencies {
     //web

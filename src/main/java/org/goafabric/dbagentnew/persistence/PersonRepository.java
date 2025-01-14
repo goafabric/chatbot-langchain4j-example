@@ -15,5 +15,7 @@ public interface PersonRepository extends CrudRepository<Person, String> {
 
     List<Person> findByAddressCityContainsIgnoreCase(String city);
 
+    List<Person> findByAllergyAllergyContainsIgnoreCase(String allergy);
+
 }
 

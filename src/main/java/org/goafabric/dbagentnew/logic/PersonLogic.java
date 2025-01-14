@@ -4,13 +4,12 @@ import dev.langchain4j.agent.tool.Tool;
 import org.goafabric.dbagentnew.persistence.PersonRepository;
 import org.goafabric.dbagentnew.persistence.entity.Person;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
 @Component
-@Transactional
+//@Transactional
 public class PersonLogic {
 
     private final PersonRepository personRepository;
@@ -36,10 +35,14 @@ public class PersonLogic {
         return personRepository.findByLastNameIgnoreCase(lastName);
     }
 
-
     @Tool
     public List<Person> findByCity(String city) {
         return personRepository.findByAddressCityContainsIgnoreCase(city);
+    }
+
+    @Tool
+    public List<Person> findByAllergy(String allergy) {
+        return personRepository.findByAllergyAllergyContainsIgnoreCase(allergy);
     }
 
     public Person save(Person person) {

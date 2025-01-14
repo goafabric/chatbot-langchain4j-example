@@ -32,10 +32,8 @@ public class AgentApplication {
             var  scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("[User]: ");
-                if (scanner.hasNext()) {
-                    var agentAnswer = agent.chat(scanner.nextLine());
-                    System.out.println("[Agent]: " + agentAnswer);
-                }
+                var agentAnswer = agent.chat(scanner.nextLine());
+                System.out.println("[Agent]: " + agentAnswer);
             }
         };
     }

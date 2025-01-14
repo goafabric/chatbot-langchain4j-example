@@ -1,5 +1,6 @@
 package org.goafabric.dbagentnew.logic;
 
+import dev.langchain4j.agent.tool.Tool;
 import org.goafabric.dbagentnew.persistence.PersonRepository;
 import org.goafabric.dbagentnew.persistence.entity.PersonEo;
 import org.springframework.stereotype.Component;
@@ -24,23 +25,19 @@ public class PersonLogic {
                 .toList();
     }
 
-    public PersonEo getById(String id) {
-        return personRepository.findById(id).orElseThrow();
 
-    }
-
+    @Tool
     public List<PersonEo> findByFirstName(String firstName) {
         return personRepository.findByFirstNameIgnoreCase(firstName);
     }
 
+    @Tool
     public List<PersonEo> findByLastName(String lastName) {
         return personRepository.findByLastNameIgnoreCase(lastName);
     }
 
-    public List<PersonEo> findByStreet(String street) {
-        return personRepository.findByAddressStreetContainsIgnoreCase(street);
-    }
 
+    @Tool
     public List<PersonEo> findByCity(String city) {
         return personRepository.findByAddressCityContainsIgnoreCase(city);
     }

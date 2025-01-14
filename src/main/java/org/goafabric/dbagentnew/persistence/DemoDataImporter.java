@@ -50,7 +50,7 @@ public class DemoDataImporter implements CommandLineRunner {
                     , List.of(createAddress("Everblue Terrace No. " + i)), createAllergy("Peanuts")));
 
             applicationContext.getBean(PersonLogic.class).save(new PersonEo(null, null, "Monty", "Burns"
-                    , List.of(createAddress("Mammon Street No. 1000 on the corner of Croesus")), createAllergy("Bees")));
+                    , List.of(new AddressEo(null, null, "Mammon Street No. 1000 on the corner of Croesus", "Shelbyville")), createAllergy("Bees")));
         });
 
     }

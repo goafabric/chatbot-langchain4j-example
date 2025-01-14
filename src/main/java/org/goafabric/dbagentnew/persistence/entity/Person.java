@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "person")
-public class PersonEo {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -20,14 +20,14 @@ public class PersonEo {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
-    private List<AddressEo> address;
+    private List<Address> address;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
-    private List<AllergyEo> allergy;
+    private List<Allergy> allergy;
 
 
-    public PersonEo(String id, Long version, String firstName, String lastName, List<AddressEo> address, List<AllergyEo> allergy) {
+    public Person(String id, Long version, String firstName, String lastName, List<Address> address, List<Allergy> allergy) {
         this.id = id;
         this.version = version;
         this.firstName = firstName;
@@ -36,7 +36,7 @@ public class PersonEo {
         this.allergy = allergy;
     }
 
-    PersonEo() {}
+    Person() {}
 
     public String getId() {
         return id;
@@ -50,11 +50,11 @@ public class PersonEo {
         return lastName;
     }
 
-    public List<AddressEo> getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
 
-    public List<AllergyEo> getAllergy() {
+    public List<Allergy> getAllergy() {
         return allergy;
     }
 

@@ -30,15 +30,19 @@ public class PersonLogic {
     }
 
     public List<PersonEo> findByFirstName(String firstName) {
-        return personRepository.findByFirstName(firstName);
+        return personRepository.findByFirstNameIgnoreCase(firstName);
     }
 
     public List<PersonEo> findByLastName(String lastName) {
-        return personRepository.findByLastName(lastName);
+        return personRepository.findByLastNameIgnoreCase(lastName);
     }
 
     public List<PersonEo> findByStreet(String street) {
         return personRepository.findByAddressStreetContainsIgnoreCase(street);
+    }
+
+    public List<PersonEo> findByCity(String city) {
+        return personRepository.findByAddressCityContainsIgnoreCase(city);
     }
 
     public PersonEo save(PersonEo person) {

@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface PersonRepository extends CrudRepository<PersonEo, String> {
 
-    List<PersonEo> findAll();
+    List<PersonEo> findByFirstNameIgnoreCase(String firstName);
 
-    List<PersonEo> findByFirstName(String firstName);
-
-    List<PersonEo> findByLastName(String lastName);
+    List<PersonEo> findByLastNameIgnoreCase(String lastName);
 
     List<PersonEo> findByAddressStreetContainsIgnoreCase(String street);
 

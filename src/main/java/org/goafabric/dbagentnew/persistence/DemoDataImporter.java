@@ -2,6 +2,7 @@ package org.goafabric.dbagentnew.persistence;
 
 import org.goafabric.dbagentnew.logic.PersonLogic;
 import org.goafabric.dbagentnew.persistence.entity.AddressEo;
+import org.goafabric.dbagentnew.persistence.entity.AllergyEo;
 import org.goafabric.dbagentnew.persistence.entity.PersonEo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,19 +44,23 @@ public class DemoDataImporter implements CommandLineRunner {
     private void insertData() {
         IntStream.range(0, 1).forEach(i -> {
             applicationContext.getBean(PersonLogic.class).save(new PersonEo(null, null, "Homer", "Sampson"
-                    , List.of(createAddress("Evergreen Terrace No. " + i), createAddress("Springfield Power Plant"))));
+                    , List.of(createAddress("Evergreen Terrace No. " + i)), createAllergy("Work")));
 
             applicationContext.getBean(PersonLogic.class).save(new PersonEo(null, null, "Bart", "Sampson"
-                    , List.of(createAddress("Everblue Terrace No. " + i))));
+                    , List.of(createAddress("Everblue Terrace No. " + i)), createAllergy("Peanuts")));
 
             applicationContext.getBean(PersonLogic.class).save(new PersonEo(null, null, "Monty", "Burns"
-                    , List.of(createAddress("Mammon Street No. 1000 on the corner of Croesus"))));
+                    , List.of(createAddress("Mammon Street No. 1000 on the corner of Croesus")), createAllergy("Bees")));
         });
 
     }
 
     private AddressEo createAddress(String street) {
-        return new AddressEo(null, null, street, "Springfield ");
+        return new AddressEo(null, null, street, "Springfield");
+    }
+
+    private List<AllergyEo> createAllergy(String allergy) {
+        return List.of(new AllergyEo(null, null, allergy));
     }
 
 }

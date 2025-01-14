@@ -4,51 +4,44 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="address")
-public class AddressEo {
+@Table(name="allergy")
+public class AllergyEo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Version //optimistic locking
+    @Version
     private Long version;
 
-    private String street;
-    private String city;
+    private String allergy;
 
-    public AddressEo(String id, Long version, String street, String city) {
+    public AllergyEo(String id, Long version, String allergy) {
         this.id = id;
-        this.street = street;
-        this.city = city;
         this.version = version;
+        this.allergy = allergy;
     }
 
-    AddressEo() {
+    AllergyEo() {
     }
 
     public String getId() {
         return id;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
     public Long getVersion() {
         return version;
     }
 
+    public String getAllergy() {
+        return allergy;
+    }
+
     @Override
     public String toString() {
-        return "AddressEo{" +
+        return "AllergyEo{" +
                 "id='" + id + '\'' +
                 ", version=" + version +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
+                ", allergy='" + allergy + '\'' +
                 '}';
     }
 }

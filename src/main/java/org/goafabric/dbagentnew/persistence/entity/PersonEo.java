@@ -18,16 +18,22 @@ public class PersonEo {
 
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private List<AddressEo> address;
 
-    public PersonEo(String id, Long version, String firstName, String lastName, List<AddressEo> address) {
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
+    private List<AllergyEo> allergy;
+
+
+    public PersonEo(String id, Long version, String firstName, String lastName, List<AddressEo> address, List<AllergyEo> allergy) {
         this.id = id;
+        this.version = version;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.version = version;
+        this.allergy = allergy;
     }
 
     PersonEo() {}
@@ -48,7 +54,23 @@ public class PersonEo {
         return address;
     }
 
+    public List<AllergyEo> getAllergy() {
+        return allergy;
+    }
+
     public Long getVersion() {
         return version;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonEo{" +
+                "id='" + id + '\'' +
+                ", version=" + version +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", allergy=" + allergy +
+                '}';
     }
 }

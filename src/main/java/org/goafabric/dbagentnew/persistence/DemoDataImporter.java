@@ -35,6 +35,7 @@ public class DemoDataImporter implements CommandLineRunner {
         try {
             if (applicationContext.getBean(PersonLogic.class).findAll().isEmpty()) {
                 insertData();
+                log.info("demo data import done ...");
             }
         } catch (DataAccessException e) {
             insertData();

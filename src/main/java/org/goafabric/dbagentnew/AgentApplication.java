@@ -1,6 +1,7 @@
 package org.goafabric.dbagentnew;
 
 import org.goafabric.dbagentnew.ai.DatabaseAgent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,9 +27,12 @@ public class AgentApplication {
     */
 
     @Bean
-    public ApplicationRunner applicationRunner (DatabaseAgent agent) {
+    public ApplicationRunner applicationRunner (DatabaseAgent agent, @Value("${scanner.enabled:true}") Boolean scannerEnabled) {
 
         return args -> {
+            if (!scannerEnabled) {
+                return;
+            }
             var  scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("[User]: ");

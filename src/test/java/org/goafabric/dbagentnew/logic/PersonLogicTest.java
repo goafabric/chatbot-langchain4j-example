@@ -20,7 +20,7 @@ class PersonLogicTest {
 
     @Test
     void findByFirstName() {
-        var person = personLogic.findByFirstName("Homer");
+        var person = personLogic.findByFirstName("homer");
         System.out.println(person);
         assertThat(person).hasSize(1);
         assertThat(person.getFirst().getAddress()).hasSize(1);
@@ -29,7 +29,7 @@ class PersonLogicTest {
 
     @Test
     void findByLastName() {
-        var person = personLogic.findByLastName("Sampson");
+        var person = personLogic.findByLastName("sampson");
 
         System.out.println(person);
         assertThat(person).hasSize(2);
@@ -39,7 +39,7 @@ class PersonLogicTest {
 
     @Test
     void findByCity() {
-        var person = personLogic.findByCity("Springfield");
+        var person = personLogic.findByCity("springfield");
 
         System.out.println(person);
         assertThat(person).hasSize(3);

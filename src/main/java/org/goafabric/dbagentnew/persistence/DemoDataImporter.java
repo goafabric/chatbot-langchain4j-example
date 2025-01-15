@@ -52,6 +52,10 @@ public class DemoDataImporter implements CommandLineRunner {
 
             applicationContext.getBean(PersonLogic.class).save(new Person(null, null, "Monty", "Burns"
                     , List.of(new Address(null, null, "Mammon Street No. 1000 on the corner of Croesus", "Shelbyville")), createAllergy("Bees")));
+
+            applicationContext.getBean(PersonLogic.class).save(new Person(null, null, "Ned", "Flanders"
+                    , List.of(new Address(null, null, "Flanders street", "Springfield")), createAllergy("Bees")));
+
         });
 
     }

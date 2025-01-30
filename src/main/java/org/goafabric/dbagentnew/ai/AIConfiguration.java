@@ -37,8 +37,9 @@ public class AIConfiguration {
     @Bean
     @Profile("deepseek")
     ChatLanguageModel chatModelDeepSeek() {
-        return OllamaChatModel.builder()
-                .baseUrl("http://localhost:11434")
+        return OpenAiChatModel.builder()
+                .apiKey("x")
+                .baseUrl("http://localhost:11434/v1")
                 .modelName("deepseek-r1:8b")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();

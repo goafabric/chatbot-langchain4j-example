@@ -8,6 +8,6 @@ logging.level.dev.ai4j.openai4j: "DEBUG"
 
 spring.profiles.active: "ollama"
 #spring.profiles.active: "openai"
-#spring.profiles.active: "mock"
+#spring.profiles.active: "deepseek"
 
 #logging.level.org.hibernate.SQL: "DEBUG"

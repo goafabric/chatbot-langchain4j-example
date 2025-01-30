@@ -40,3 +40,6 @@ curl -v http://localhost:8000/v1/completions -H "Content-Type: application/json"
 "temperature": 0.7
 }'
                             
+              
+# deepseek
+ollama run deepseek-r1:8b

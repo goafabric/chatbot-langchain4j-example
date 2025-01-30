@@ -35,6 +35,16 @@ public class AIConfiguration {
     }
 
     @Bean
+    @Profile("deepseek")
+    ChatLanguageModel chatModelDeepSeek() {
+        return OllamaChatModel.builder()
+                .baseUrl("http://localhost:11434")
+                .modelName("deepseek-r1:8b")
+                .timeout(ofSeconds(30)).temperature(0.0)
+                .build();
+    }
+
+    @Bean
     DatabaseAgent databaseAgent(ChatLanguageModel chatLanguageModel, PersonLogic personLogic) {
         return AiServices.builder(DatabaseAgent.class)
                 .chatLanguageModel(chatLanguageModel)

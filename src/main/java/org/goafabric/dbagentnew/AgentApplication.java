@@ -22,7 +22,7 @@ public class AgentApplication {
     /*
     I need to find bart
     Can you give me his address
-    I need to find the person with allergies to peanuts
+    I need to find the person with allergies to work
     Which allergies to we have in shelbyville
     */
 

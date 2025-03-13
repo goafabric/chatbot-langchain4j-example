@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 val group: String by project
 val version: String by project
 java.sourceCompatibility = JavaVersion.VERSION_21
@@ -61,3 +63,10 @@ tasks.withType<Test> {
 }
 
 
+
+graalvmNative {
+    binaries.named("main") {
+        quickBuild.set(true)
+        buildArgs.add("--initialize-at-build-time=org.slf4j.helpers.Reporter")
+    }
+}

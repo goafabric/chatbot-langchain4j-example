@@ -41,6 +41,7 @@ dependencies {
     implementation("dev.langchain4j:langchain4j:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-open-ai:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-ollama:${langchain4JVersion}")
+    //implementation("dev.langchain4j:langchain4j-azure-open-ai:${langchain4JVersion}") {exclude("org.slf4j", "sl4j-api")}
 
     //persistence
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}

@@ -13,7 +13,7 @@ class PersonLogicTest {
 
     @Test
     void findAll() {
-        assertThat(personLogic.findAll()).hasSize(3);
+        assertThat(personLogic.findAll()).hasSize(4);
     }
 
 
@@ -41,7 +41,7 @@ class PersonLogicTest {
         var person = personLogic.findByCity("springfield");
 
         System.out.println(person);
-        assertThat(person).hasSize(2);
+        assertThat(person).hasSize(3);
         assertThat(person.getFirst().getAddress()).hasSize(1);
         assertThat(person.getFirst().getAllergy()).hasSize(1);
 

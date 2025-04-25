@@ -29,7 +29,7 @@ public class AIConfiguration {
     ChatLanguageModel chatModelOllama() {
         return OllamaChatModel.builder()
                 .baseUrl("http://localhost:11434")
-                .modelName("llama3.2")
+                .modelName("llama3.1")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();
     }

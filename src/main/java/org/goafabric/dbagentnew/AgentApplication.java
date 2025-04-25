@@ -5,15 +5,13 @@ import org.goafabric.dbagentnew.persistence.DemoDataImporter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Scanner;
 
 
-@SpringBootApplication
-
+//@SpringBootApplication
 public class AgentApplication {
 
     public static void main(String[] args){
@@ -27,7 +25,7 @@ public class AgentApplication {
     Which allergies to we have in shelbyville
     */
 
-    
+
     @Bean
     public CommandLineRunner init(ApplicationContext context, DatabaseAgent agent, DemoDataImporter demoDataImporter, @Value("${scanner.enabled:true}") Boolean scannerEnabled) {
         return args -> {

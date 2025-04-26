@@ -6,8 +6,10 @@ import dev.langchain4j.service.AiServices;
 import org.goafabric.dbagentnew.dbagent.logic.PersonLogic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("agent")
 public class DatabaseAgentConfiguration {
 
     @Bean

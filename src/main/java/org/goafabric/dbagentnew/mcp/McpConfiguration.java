@@ -10,11 +10,13 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
 //https://github.com/modelcontextprotocol/servers/tree/main/src
 @Configuration
+@Profile("mcp")
 public class McpConfiguration {
     @Bean
     public McpBot mcpBot(ChatLanguageModel model) {

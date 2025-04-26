@@ -4,6 +4,7 @@ import org.goafabric.dbagentnew.dbagent.DatabaseAgent;
 import org.goafabric.dbagentnew.dbagent.persistence.DemoDataImporter;
 import org.goafabric.dbagentnew.mcp.McpBot;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,8 +30,13 @@ public class Application {
     @Bean
     public CommandLineRunner init(@Autowired(required = false) DatabaseAgent databaseAgent,
                                   @Autowired(required = false) McpBot mcpBot,
+                                  @Value("${scanner.enabled:true}") Boolean scannerEnabled,
                                   DemoDataImporter demoDataImporter) {
         return args -> {
+            if (!scannerEnabled) {
+                return;
+            }
+
             demoDataImporter.run();
             var  scanner = new Scanner(System.in);
             while (true) {

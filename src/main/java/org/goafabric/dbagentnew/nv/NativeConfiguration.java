@@ -1,4 +1,4 @@
-package org.goafabric.dbagentnew;
+package org.goafabric.dbagentnew.nv;
 
 import org.goafabric.dbagentnew.ai.DatabaseAgent;
 import org.goafabric.dbagentnew.logic.PersonLogic;

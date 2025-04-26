@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+//https://github.com/modelcontextprotocol/servers/tree/main/src
 @Configuration
 public class McpConfiguration {
     @Bean

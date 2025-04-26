@@ -1,4 +1,4 @@
-package org.goafabric.dbagentnew.ai;
+package org.goafabric.dbagentnew.dbagent;
 
 import dev.langchain4j.service.SystemMessage;
 

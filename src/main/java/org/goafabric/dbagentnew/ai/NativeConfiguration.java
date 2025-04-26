@@ -1,7 +1,7 @@
-package org.goafabric.dbagentnew.nv;
+package org.goafabric.dbagentnew.ai;
 
-import org.goafabric.dbagentnew.ai.DatabaseAgent;
-import org.goafabric.dbagentnew.logic.PersonLogic;
+import org.goafabric.dbagentnew.dbagent.DatabaseAgent;
+import org.goafabric.dbagentnew.dbagent.logic.PersonLogic;
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;

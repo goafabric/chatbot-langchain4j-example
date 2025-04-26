@@ -1,8 +1,8 @@
-package org.goafabric.dbagentnew.logic;
+package org.goafabric.dbagentnew.dbagent.logic;
 
 import dev.langchain4j.agent.tool.Tool;
-import org.goafabric.dbagentnew.persistence.PersonRepository;
-import org.goafabric.dbagentnew.persistence.entity.Person;
+import org.goafabric.dbagentnew.dbagent.persistence.PersonRepository;
+import org.goafabric.dbagentnew.dbagent.persistence.entity.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

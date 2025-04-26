@@ -1,17 +1,18 @@
 package org.goafabric.dbagentnew;
 
-import org.goafabric.dbagentnew.ai.DatabaseAgent;
-import org.goafabric.dbagentnew.persistence.DemoDataImporter;
+import org.goafabric.dbagentnew.dbagent.DatabaseAgent;
+import org.goafabric.dbagentnew.dbagent.persistence.DemoDataImporter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Scanner;
 
 
-//@SpringBootApplication
+@SpringBootApplication
 public class AgentApplication {
 
     public static void main(String[] args){

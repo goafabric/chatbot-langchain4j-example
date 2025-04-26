@@ -1,6 +1,6 @@
-package org.goafabric.dbagentnew.persistence;
+package org.goafabric.dbagentnew.dbagent.persistence;
 
-import org.goafabric.dbagentnew.persistence.entity.Person;
+import org.goafabric.dbagentnew.dbagent.persistence.entity.Person;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

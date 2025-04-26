@@ -1,4 +1,4 @@
-package org.goafabric.dbagentnew.persistence.entity;
+package org.goafabric.dbagentnew.dbagent.persistence.entity;
 
 import jakarta.persistence.*;
 

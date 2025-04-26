@@ -1,9 +1,9 @@
-package org.goafabric.dbagentnew.persistence;
+package org.goafabric.dbagentnew.dbagent.persistence;
 
-import org.goafabric.dbagentnew.logic.PersonLogic;
-import org.goafabric.dbagentnew.persistence.entity.Address;
-import org.goafabric.dbagentnew.persistence.entity.Allergy;
-import org.goafabric.dbagentnew.persistence.entity.Person;
+import org.goafabric.dbagentnew.dbagent.logic.PersonLogic;
+import org.goafabric.dbagentnew.dbagent.persistence.entity.Address;
+import org.goafabric.dbagentnew.dbagent.persistence.entity.Allergy;
+import org.goafabric.dbagentnew.dbagent.persistence.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

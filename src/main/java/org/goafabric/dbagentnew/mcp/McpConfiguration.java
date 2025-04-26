@@ -21,8 +21,8 @@ public class McpConfiguration {
                 .command(List.of(
                         "npx",
                         "-y",
-                        "@modelcontextprotocol/server-filesystem",
-                        "/Users/andreas/Downloads/architecture-decission-records"
+                        //"@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
+                        "@modelcontextprotocol/server-postgres", "postgres://postgres:postgres@localhost:5432/postgres"
                 ))
                 .logEvents(true)
                 .build();

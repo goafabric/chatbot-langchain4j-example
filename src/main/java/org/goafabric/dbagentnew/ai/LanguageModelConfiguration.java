@@ -1,6 +1,6 @@
 package org.goafabric.dbagentnew.ai;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ public class LanguageModelConfiguration {
 
     @Bean
     @Profile("openai")
-    ChatLanguageModel chatModelOpenAi() {
+    ChatModel chatModelOpenAi() {
         return OpenAiChatModel.builder().apiKey("demo")
                 .modelName("gpt-4o-mini")
                 .timeout(ofSeconds(30)).temperature(0.0)
@@ -23,7 +23,7 @@ public class LanguageModelConfiguration {
 
     @Bean
     @Profile("ollama")
-    ChatLanguageModel chatModelOllama() {
+    ChatModel chatModelOllama() {
         return OllamaChatModel.builder()
                 .baseUrl("http://localhost:11434")
                 .modelName("llama3.1")
@@ -33,7 +33,7 @@ public class LanguageModelConfiguration {
 
     @Bean
     @Profile("deepseek")
-    ChatLanguageModel chatModelDeepSeek() {
+    ChatModel chatModelDeepSeek() {
         return OpenAiChatModel.builder()
                 .apiKey("x")
                 .baseUrl("http://localhost:11434/v1")

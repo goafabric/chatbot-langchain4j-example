@@ -5,7 +5,7 @@ import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
 import dev.langchain4j.mcp.client.transport.stdio.StdioMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ import java.util.List;
 @Profile("mcp")
 public class McpConfiguration {
     @Bean
-    public McpBot mcpBot(ChatLanguageModel model) {
+    public McpBot mcpBot(ChatModel model) {
         McpTransport transport = new StdioMcpTransport.Builder()
                 .command(List.of(
                         "npx",
@@ -39,7 +39,7 @@ public class McpConfiguration {
                 .build();
 
         return AiServices.builder(McpBot.class)
-                .chatLanguageModel(model)
+                .chatModel(model)
                 .toolProvider(toolProvider)
                 .build();
     }

@@ -24,8 +24,8 @@ public class McpConfiguration {
                 .command(List.of(
                         //"npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
                         //"npx", "-y", "@modelcontextprotocol/server-postgres", "postgres://postgres:postgres@localhost:5432/postgres"
-                        //"npx", "-y","kubernetes-mcp-server@latest"
-                        "k8sgpt", "server", "--mcp"
+                        "npx", "-y","kubernetes-mcp-server@latest"
+                        //"k8sgpt", "serve", "--mcp", "--backend", "ollama"
                 ))
                 .logEvents(true)
                 .build();

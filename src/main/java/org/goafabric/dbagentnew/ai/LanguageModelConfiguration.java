@@ -15,8 +15,9 @@ public class LanguageModelConfiguration {
     @Bean
     @Profile("openai")
     ChatModel chatModelOpenAi() {
-        return OpenAiChatModel.builder().apiKey("demo")
-                .modelName("gpt-4o-mini")
+        return OpenAiChatModel.builder().apiKey("")
+                .baseUrl("http://localhost:11434/v1")
+                .modelName("gpt-oss:20b")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();
     }

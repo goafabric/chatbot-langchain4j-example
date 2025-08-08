@@ -23,8 +23,8 @@ public class McpConfiguration {
         McpTransport transport = new StdioMcpTransport.Builder()
                 .command(List.of(
                         //"npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
-                        "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://postgres:postgres@localhost:5432/postgres"
-                        //"npx", "-y","kubernetes-mcp-server@latest"
+                        //"npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://postgres:postgres@localhost:5432/postgres"
+                        "npx", "-y","kubernetes-mcp-server@latest"
                         //"k8sgpt", "serve", "--mcp", "--backend", "ollama"
                 ))
                 .logEvents(true)

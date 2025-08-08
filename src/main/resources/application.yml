@@ -16,7 +16,7 @@ logging.level.dev.ai4j.openai4j: "DEBUG"
 spring.profiles.active: "agent,ollama"
 #spring.profiles.active: "agent,openai"
 
-#spring.profiles.active: "mcp,openai"
 #spring.profiles.active: "mcp,ollama"
+#spring.profiles.active: "mcp,openai"
 
 #logging.level.org.hibernate.SQL: "DEBUG"

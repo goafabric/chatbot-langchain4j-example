@@ -22,11 +22,10 @@ public class McpConfiguration {
     public McpBot mcpBot(ChatModel model) {
         McpTransport transport = new StdioMcpTransport.Builder()
                 .command(List.of(
-                        "npx",
-                        "-y",
-                        //"@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
-                        //"@modelcontextprotocol/server-postgres", "postgres://postgres:postgres@localhost:5432/postgres"
-                        "kubernetes-mcp-server@latest"
+                        //"npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
+                        //"npx", "-y", "@modelcontextprotocol/server-postgres", "postgres://postgres:postgres@localhost:5432/postgres"
+                        //"npx", "-y","kubernetes-mcp-server@latest"
+                        "k8sgpt", "server", "--mcp"
                 ))
                 .logEvents(true)
                 .build();

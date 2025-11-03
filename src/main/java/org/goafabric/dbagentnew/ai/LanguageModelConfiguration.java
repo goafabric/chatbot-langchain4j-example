@@ -27,7 +27,7 @@ public class LanguageModelConfiguration {
     ChatModel chatModelOllama() {
         return OllamaChatModel.builder()
                 .baseUrl("http://localhost:11434")
-                .modelName("llama3.1")
+                .modelName("llama3.1:8b")
                 .timeout(ofSeconds(30)).temperature(0.0)
                 .build();
     }

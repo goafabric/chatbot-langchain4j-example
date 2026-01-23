@@ -1,4 +1,4 @@
-package org.goafabric.dbagentnew.dbagent;
+package org.goafabric.dbagentnew.dbagent.llm;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;

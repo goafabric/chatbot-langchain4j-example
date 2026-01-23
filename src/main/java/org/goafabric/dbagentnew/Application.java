@@ -1,6 +1,6 @@
 package org.goafabric.dbagentnew;
 
-import org.goafabric.dbagentnew.dbagent.DatabaseAgent;
+import org.goafabric.dbagentnew.dbagent.llm.DatabaseAgent;
 import org.goafabric.dbagentnew.dbagent.persistence.DemoDataImporter;
 import org.goafabric.dbagentnew.mcp.McpBot;
 import org.springframework.beans.factory.annotation.Autowired;

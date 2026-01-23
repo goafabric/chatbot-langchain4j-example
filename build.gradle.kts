@@ -1,20 +1,20 @@
 import org.gradle.internal.os.OperatingSystem
 
-val group: String by project
 val version: String by project
-java.sourceCompatibility = JavaVersion.VERSION_21
+val javaVersion = "25"
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 
 val dockerRegistry = "goafabric"
-val baseImage = "ibm-semeru-runtimes:open-21.0.4.1_7-jre-focal@sha256:8b94f8b14fd1d4660f9dc777b1ad3630f847b8e3dc371203bcb857a5e74d6c39"
+val baseImage = "ibm-semeru-runtimes:open-jdk-25.0.0_36-jre@sha256:8ae073345116cfd51ec37b26c3a1c25de9336d436354e0be4271bda1463e119c"
 
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.4.5"
+    id("org.springframework.boot") version "4.0.2"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.graalvm.buildtools.native") version "0.10.5"
+    id("org.graalvm.buildtools.native") version "0.11.4"
 
-    id("com.google.cloud.tools.jib") version "3.4.4"
+    id("com.google.cloud.tools.jib") version "3.5.2"
 }
 
 repositories {

@@ -34,7 +34,7 @@ dependencies {
     }
 }
 
-val langchain4JVersion = "1.7.1"
+val langchain4JVersion = "1.10.0"
 
 dependencies {
     //web
@@ -43,7 +43,7 @@ dependencies {
     implementation("dev.langchain4j:langchain4j:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-open-ai:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-ollama:${langchain4JVersion}")
-    implementation("dev.langchain4j:langchain4j-mcp:1.7.1-beta14")
+    implementation("dev.langchain4j:langchain4j-mcp:1.10.0-beta18")
 
     //implementation("dev.langchain4j:langchain4j-azure-open-ai:${langchain4JVersion}") {exclude("org.slf4j", "sl4j-api")}
 

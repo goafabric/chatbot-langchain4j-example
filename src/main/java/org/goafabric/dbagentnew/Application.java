@@ -30,6 +30,7 @@ public class Application {
     @Bean
     public CommandLineRunner init(@Autowired(required = false) DatabaseAgent databaseAgent,
                                   @Autowired(required = false) McpBot mcpBot,
+                                  @Autowired(required = false) McpBot ragBot,
                                   @Value("${scanner.enabled:true}") Boolean scannerEnabled,
                                   DemoDataImporter demoDataImporter) {
         return args -> {
@@ -46,7 +47,9 @@ public class Application {
                 }
                 if (mcpBot != null) {
                     System.out.println("[Agent]: " + mcpBot.chat(scanner.nextLine()));
-
+                }
+                if (ragBot != null) {
+                    System.out.println("[Agent]: " + ragBot.chat(scanner.nextLine()));
                 }
 
             }

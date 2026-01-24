@@ -13,7 +13,7 @@ logging.level.org.goafabric: "INFO"
 logging.level.dev.langchain4j: "DEBUG"
 logging.level.dev.ai4j.openai4j: "DEBUG"
 
-spring.profiles.active: "agent,ollama"
+spring.profiles.active: "rag,ollama"
 #spring.profiles.active: "agent,openai"
 
 #spring.profiles.active: "mcp,ollama"

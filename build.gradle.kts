@@ -35,17 +35,25 @@ dependencies {
 }
 
 val langchain4JVersion = "1.10.0"
+val langchain4JBetaVersion = "1.10.0-beta18"
 
 dependencies {
     //web
     implementation("org.springframework.boot:spring-boot-starter")
-    
+
+    //langchain
     implementation("dev.langchain4j:langchain4j:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-open-ai:${langchain4JVersion}")
     implementation("dev.langchain4j:langchain4j-ollama:${langchain4JVersion}")
-    implementation("dev.langchain4j:langchain4j-mcp:1.10.0-beta18")
+    implementation("dev.langchain4j:langchain4j-mcp:${langchain4JBetaVersion}")
 
-    //implementation("dev.langchain4j:langchain4j-azure-open-ai:${langchain4JVersion}") {exclude("org.slf4j", "sl4j-api")}
+    //rag
+    implementation("dev.langchain4j:langchain4j-easy-rag:${langchain4JBetaVersion}")
+    implementation("dev.langchain4j:langchain4j-cohere:${langchain4JBetaVersion}")
+    implementation("dev.langchain4j:langchain4j-experimental-sql:${langchain4JBetaVersion}")
+
+    implementation("dev.langchain4j:langchain4j-embeddings-bge-small-en-v15-q:${langchain4JBetaVersion}")
+    implementation("dev.langchain4j:langchain4j-embedding-store-filter-parser-sql:${langchain4JBetaVersion}")    
 
     //persistence
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}

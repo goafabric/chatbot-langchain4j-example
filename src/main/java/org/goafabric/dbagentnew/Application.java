@@ -3,6 +3,7 @@ package org.goafabric.dbagentnew;
 import org.goafabric.dbagentnew.dbagent.llm.DatabaseAgent;
 import org.goafabric.dbagentnew.dbagent.persistence.DemoDataImporter;
 import org.goafabric.dbagentnew.mcp.McpBot;
+import org.goafabric.dbagentnew.rag.RagBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -30,7 +31,7 @@ public class Application {
     @Bean
     public CommandLineRunner init(@Autowired(required = false) DatabaseAgent databaseAgent,
                                   @Autowired(required = false) McpBot mcpBot,
-                                  @Autowired(required = false) McpBot ragBot,
+                                  @Autowired(required = false) RagBot ragBot,
                                   @Value("${scanner.enabled:true}") Boolean scannerEnabled,
                                   DemoDataImporter demoDataImporter) {
         return args -> {
@@ -49,7 +50,7 @@ public class Application {
                     System.out.println("[Agent]: " + mcpBot.chat(scanner.nextLine()));
                 }
                 if (ragBot != null) {
-                    System.out.println("[Agent]: " + ragBot.chat(scanner.nextLine()));
+                    System.out.println("[Raag]: " + ragBot.chat(scanner.nextLine()));
                 }
 
             }

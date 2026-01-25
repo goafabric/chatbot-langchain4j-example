@@ -2,8 +2,8 @@ package org.goafabric.dbagentnew.rag;
 
 import com.zaxxer.hikari.HikariDataSource;
 import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.DocumentParser;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
+import dev.langchain4j.data.document.parser.apache.tika.ApacheTikaDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
@@ -26,6 +26,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
@@ -38,7 +39,10 @@ public class RagConfiguration {
 
     @Bean
     public Assistant ragBot(ChatModel chatModel) {
-        var textSegments = createTexSegments("doc/biography-of-john-doe.txt");
+        var textSegments = createTexSegments(List.of(
+                //"doc/story-about-happy-carrot.pdf"
+                "doc/biography-of-john-doe.txt"
+        ));
         //var textSegments =  Collections.singletonList(TextSegment.from("Hello World"));
 
         var embeddingModel = new BgeSmallEnV15QuantizedEmbeddingModel();
@@ -53,13 +57,17 @@ public class RagConfiguration {
         
     }
 
-    private List<TextSegment> createTexSegments(String fileName) {
-        Path path = toPath(fileName);
-        DocumentParser documentParser = new TextDocumentParser();
-        Document document = loadDocument(path, documentParser);
-
+    private List<TextSegment> createTexSegments(List<String> fileNames) {
+        var textSegments = new ArrayList<TextSegment>();
+        fileNames.forEach(fileName -> {
+            Path path = toPath(fileName);
+            Document document = fileName.contains(".pdf")
+            ? loadDocument(path, new ApacheTikaDocumentParser())
+            : loadDocument(path, new TextDocumentParser());
+            textSegments.addAll(DocumentSplitters.recursive(300, 0).split(document));
+        });
+        return textSegments;
         //return Collections.singletonList(TextSegment.from("Hello World"));
-        return DocumentSplitters.recursive(300, 0).split(document);
     }
 
     private @NonNull EmbeddingStore<TextSegment> creteEmbedding(BgeSmallEnV15QuantizedEmbeddingModel embeddingModel, List<TextSegment> textSegments) {

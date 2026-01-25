@@ -49,7 +49,9 @@ dependencies {
 
     //rag
     implementation("dev.langchain4j:langchain4j-embeddings-bge-small-en-v15-q:${langchain4JBetaVersion}")
+    implementation("dev.langchain4j:langchain4j-document-parser-apache-tika:${langchain4JBetaVersion}")
     implementation("dev.langchain4j:langchain4j-pgvector:${langchain4JBetaVersion}")
+
     //persistence
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
     implementation("com.h2database:h2")

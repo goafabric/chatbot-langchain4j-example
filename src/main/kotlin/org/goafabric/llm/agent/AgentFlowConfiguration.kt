@@ -43,7 +43,7 @@ class AgentFlowConfiguration {
     fun story(novelCreator: NovelCreator): String {
         var text = novelCreator.createNovel("dragons and wizards",
             "young adults",
-            "fantasy")
+            "fantasy")  //comedy
         println(text)
         return text
     }

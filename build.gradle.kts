@@ -15,6 +15,10 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.11.4"
 
     id("com.google.cloud.tools.jib") version "3.5.2"
+
+    kotlin("jvm") version "2.3.0"
+    kotlin("plugin.spring") version "2.3.0"
+    kotlin("plugin.jpa") version "2.3.0"
 }
 
 repositories {
@@ -60,6 +64,11 @@ dependencies {
 
     //tools
     //implementation("org.apache.opennlp:opennlp-tools:2.3.1")
+
+    //kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("tools.jackson.module:jackson-module-kotlin")
 
     //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

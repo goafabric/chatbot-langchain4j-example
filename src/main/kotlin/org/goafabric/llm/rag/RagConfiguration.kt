@@ -27,9 +27,7 @@ import java.util.function.Consumer
 
 @Configuration
 @Profile("rag")
-class RagConfiguration {
-    @Autowired
-    private val dataSource: HikariDataSource? = null
+class RagConfiguration(private val dataSource: HikariDataSource) {
 
     @Bean
     fun ragBot(chatModel: ChatModel?): Assistant? {
@@ -69,7 +67,7 @@ class RagConfiguration {
         embeddingModel: BgeSmallEnV15QuantizedEmbeddingModel,
         textSegments: MutableList<TextSegment?>?
     ): EmbeddingStore<TextSegment?> {
-        val embeddingStore = if (dataSource!!.getDriverClassName() == "org.postgresql.Driver")
+        val embeddingStore = if (dataSource.driverClassName == "org.postgresql.Driver")
             PgVectorEmbeddingStore.datasourceBuilder().datasource(dataSource).table("my_vector")
                 .dimension(embeddingModel.dimension()).build()
         else

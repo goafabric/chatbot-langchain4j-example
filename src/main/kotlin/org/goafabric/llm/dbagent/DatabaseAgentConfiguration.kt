@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 
 @Configuration
-@Profile("agent")
+@Profile("allergy")
 class DatabaseAgentConfiguration {
     @Bean
     fun databaseAgent(chatLanguageModel: ChatModel?, personLogic: PersonLogic?): DatabaseAgent? {

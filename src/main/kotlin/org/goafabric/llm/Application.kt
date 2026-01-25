@@ -20,12 +20,15 @@ Which allergies to we have in shelbyville
 class Application {
     @Bean
     fun init(
-        @Autowired assistant: Assistant,
+        @Autowired(required = false) assistant: Assistant?,
         @Value("\${scanner.enabled:true}") scannerEnabled: Boolean,
         demoDataImporter: DemoDataImporter
     ): CommandLineRunner {
         return CommandLineRunner { args: Array<String> ->
             if (!scannerEnabled) {
+                return@CommandLineRunner
+            }
+            if (assistant == null) {
                 return@CommandLineRunner
             }
             demoDataImporter.run()

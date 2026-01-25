@@ -1,9 +1,7 @@
 package org.goafabric.dbagentnew;
 
-import org.goafabric.dbagentnew.dbagent.llm.DatabaseAgent;
+import org.goafabric.dbagentnew.config.Assistant;
 import org.goafabric.dbagentnew.dbagent.persistence.DemoDataImporter;
-import org.goafabric.dbagentnew.mcp.McpBot;
-import org.goafabric.dbagentnew.rag.RagBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -29,9 +27,7 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner init(@Autowired(required = false) DatabaseAgent databaseAgent,
-                                  @Autowired(required = false) McpBot mcpBot,
-                                  @Autowired(required = false) RagBot ragBot,
+    public CommandLineRunner init(@Autowired Assistant assistant,
                                   @Value("${scanner.enabled:true}") Boolean scannerEnabled,
                                   DemoDataImporter demoDataImporter) {
         return args -> {
@@ -43,16 +39,7 @@ public class Application {
             var  scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("[User]: ");
-                if (databaseAgent != null) {
-                    System.out.println("[Agent]: " + databaseAgent.chat(scanner.nextLine()));
-                }
-                if (mcpBot != null) {
-                    System.out.println("[Agent]: " + mcpBot.chat(scanner.nextLine()));
-                }
-                if (ragBot != null) {
-                    System.out.println("[Raag]: " + ragBot.chat(scanner.nextLine()));
-                }
-
+                System.out.println("[Assistant]: " + assistant.answer(scanner.nextLine()));
             }
         };
     }

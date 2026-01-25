@@ -8,6 +8,7 @@ import dev.langchain4j.mcp.client.transport.stdio.StdioMcpTransport;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
+import org.goafabric.dbagentnew.config.Assistant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -19,7 +20,7 @@ import java.util.List;
 @Profile("mcp")
 public class McpConfiguration {
     @Bean
-    public McpBot mcpBot(ChatModel model) {
+    public Assistant mcpBot(ChatModel model) {
         McpTransport transport = new StdioMcpTransport.Builder()
                 .command(List.of(
                         //"npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
@@ -38,7 +39,7 @@ public class McpConfiguration {
                 .mcpClients(List.of(mcpClient))
                 .build();
 
-        return AiServices.builder(McpBot.class)
+        return AiServices.builder(Assistant.class)
                 .chatModel(model)
                 .toolProvider(toolProvider)
                 .build();

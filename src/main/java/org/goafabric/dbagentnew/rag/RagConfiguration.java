@@ -14,6 +14,7 @@ import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import org.goafabric.dbagentnew.config.Assistant;
 import org.jspecify.annotations.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,14 +32,14 @@ import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.load
 @Profile("rag")
 public class RagConfiguration {
     @Bean
-    public RagBot ragBot(ChatModel chatModel) {
-        List<TextSegment> segments = createDocumentSegments();
+    public Assistant ragBot(ChatModel chatModel) {
+        var segments = createDocumentSegments("doc/biography-of-john-doe.txt");
 
         var embeddingModel = new BgeSmallEnV15QuantizedEmbeddingModel();
         var embeddingStore = creteEmbedding(embeddingModel, segments);
         var contentRetriever = cretateContentRetriever(embeddingStore, embeddingModel);
 
-        return AiServices.builder(RagBot.class)
+        return AiServices.builder(Assistant.class)
                 .chatModel(chatModel)
                 .contentRetriever(contentRetriever)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
@@ -46,8 +47,8 @@ public class RagConfiguration {
         
     }
 
-    private static List<TextSegment> createDocumentSegments() {
-        Path path = toPath("doc/biography-of-john-doe.txt");
+    private static List<TextSegment> createDocumentSegments(String fileName) {
+        Path path = toPath(fileName);
         DocumentParser documentParser = new TextDocumentParser();
         Document document = loadDocument(path, documentParser);
 

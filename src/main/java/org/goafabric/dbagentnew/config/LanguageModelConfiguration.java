@@ -1,4 +1,4 @@
-package org.goafabric.dbagentnew.dbagent.llm;
+package org.goafabric.dbagentnew.config;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;

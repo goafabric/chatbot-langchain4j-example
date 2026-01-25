@@ -2,7 +2,6 @@ package org.goafabric.dbagentnew.rag;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentParser;
-import dev.langchain4j.data.document.DocumentSplitter;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.segment.TextSegment;
@@ -33,10 +32,11 @@ import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.load
 public class RagConfiguration {
     @Bean
     public Assistant ragBot(ChatModel chatModel) {
-        var segments = createDocumentSegments("doc/biography-of-john-doe.txt");
+        var textSegments = createTexSegments("doc/biography-of-john-doe.txt");
+        //var textSegments =  Collections.singletonList(TextSegment.from("Hello World"));
 
         var embeddingModel = new BgeSmallEnV15QuantizedEmbeddingModel();
-        var embeddingStore = creteEmbedding(embeddingModel, segments);
+        var embeddingStore = creteEmbedding(embeddingModel, textSegments);
         var contentRetriever = cretateContentRetriever(embeddingStore, embeddingModel);
 
         return AiServices.builder(Assistant.class)
@@ -47,20 +47,19 @@ public class RagConfiguration {
         
     }
 
-    private static List<TextSegment> createDocumentSegments(String fileName) {
+    private static List<TextSegment> createTexSegments(String fileName) {
         Path path = toPath(fileName);
         DocumentParser documentParser = new TextDocumentParser();
         Document document = loadDocument(path, documentParser);
 
-        DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
-        return splitter.split(document);
+        //return Collections.singletonList(TextSegment.from("Hello World"));
+        return DocumentSplitters.recursive(300, 0).split(document);
     }
 
-    private static @NonNull EmbeddingStore<TextSegment> creteEmbedding(BgeSmallEnV15QuantizedEmbeddingModel embeddingModel, List<TextSegment> segments) {
-        var embeddings = embeddingModel.embedAll(segments).content();
-
+    private static @NonNull EmbeddingStore<TextSegment> creteEmbedding(BgeSmallEnV15QuantizedEmbeddingModel embeddingModel, List<TextSegment> textSegments) {
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
-        embeddingStore.addAll(embeddings, segments);
+        embeddingStore.addAll(
+                embeddingModel.embedAll(textSegments).content(), textSegments);
         return embeddingStore;
     }
 

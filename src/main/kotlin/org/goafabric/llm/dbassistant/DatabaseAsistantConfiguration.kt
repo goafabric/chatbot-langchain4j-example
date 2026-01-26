@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Profile
 
 @Configuration
 @Profile("allergy")
-class DatabaseAgentConfiguration {
+class DatabaseAsistantConfiguration {
     @Bean
-    fun databaseAgent(chatLanguageModel: ChatModel?, personLogic: PersonLogic?): DatabaseAgent? {
-        return AiServices.builder<DatabaseAgent?>(DatabaseAgent::class.java)
+    fun databaseAgent(chatLanguageModel: ChatModel?, personLogic: PersonLogic?): DatabaseAssistant? {
+        return AiServices.builder<DatabaseAssistant?>(DatabaseAssistant::class.java)
             .chatModel(chatLanguageModel)
             .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
             .tools(personLogic)

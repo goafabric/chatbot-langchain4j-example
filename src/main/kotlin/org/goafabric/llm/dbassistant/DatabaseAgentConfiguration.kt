@@ -1,9 +1,9 @@
-package org.goafabric.llm.dbagent
+package org.goafabric.llm.dbassistant
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory
 import dev.langchain4j.model.chat.ChatModel
 import dev.langchain4j.service.AiServices
-import org.goafabric.llm.dbagent.logic.PersonLogic
+import org.goafabric.llm.dbassistant.logic.PersonLogic
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile

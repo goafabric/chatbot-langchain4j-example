@@ -1,7 +1,7 @@
 package org.goafabric.llm
 
 import org.goafabric.llm.config.Assistant
-import org.goafabric.llm.dbagent.persistence.DemoDataImporter
+import org.goafabric.llm.dbassistant.persistence.DemoDataImporter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner

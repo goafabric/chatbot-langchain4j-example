@@ -1,4 +1,4 @@
-package org.goafabric.llm.dbagent.persistence.entity
+package org.goafabric.llm.dbassistant.persistence.entity
 
 import jakarta.persistence.*
 

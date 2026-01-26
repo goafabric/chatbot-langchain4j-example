@@ -1,6 +1,6 @@
-package org.goafabric.llm.dbagent.persistence
+package org.goafabric.llm.dbassistant.persistence
 
-import org.goafabric.llm.dbagent.persistence.entity.Person
+import org.goafabric.llm.dbassistant.persistence.entity.Person
 import org.springframework.data.repository.CrudRepository
 
 interface PersonRepository : CrudRepository<Person, String> {

@@ -1,8 +1,8 @@
-package org.goafabric.llm.dbassistant.logic
+package org.goafabric.llm.tool.logic
 
 import dev.langchain4j.agent.tool.Tool
-import org.goafabric.llm.dbassistant.persistence.PersonRepository
-import org.goafabric.llm.dbassistant.persistence.entity.Person
+import org.goafabric.llm.tool.persistence.PersonRepository
+import org.goafabric.llm.tool.persistence.entity.Person
 import org.springframework.stereotype.Component
 import java.util.stream.StreamSupport
 

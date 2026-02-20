@@ -1,9 +1,9 @@
-package org.goafabric.llm.dbassistant.persistence
+package org.goafabric.llm.tool.persistence
 
-import org.goafabric.llm.dbassistant.logic.PersonLogic
-import org.goafabric.llm.dbassistant.persistence.entity.Address
-import org.goafabric.llm.dbassistant.persistence.entity.Allergy
-import org.goafabric.llm.dbassistant.persistence.entity.Person
+import org.goafabric.llm.tool.logic.PersonLogic
+import org.goafabric.llm.tool.persistence.entity.Address
+import org.goafabric.llm.tool.persistence.entity.Allergy
+import org.goafabric.llm.tool.persistence.entity.Person
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner

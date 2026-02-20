@@ -1,15 +1,15 @@
-package org.goafabric.llm.dbassistant
+package org.goafabric.llm.tool
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory
 import dev.langchain4j.model.chat.ChatModel
 import dev.langchain4j.service.AiServices
-import org.goafabric.llm.dbassistant.logic.PersonLogic
+import org.goafabric.llm.tool.logic.PersonLogic
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 
 @Configuration
-@Profile("allergy")
+@Profile("tool")
 class DatabaseAsistantConfiguration {
     @Bean
     fun databaseAgent(chatLanguageModel: ChatModel?, personLogic: PersonLogic?): DatabaseAssistant? {

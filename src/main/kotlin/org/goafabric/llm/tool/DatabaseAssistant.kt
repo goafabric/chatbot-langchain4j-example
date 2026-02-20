@@ -1,4 +1,4 @@
-package org.goafabric.llm.dbassistant
+package org.goafabric.llm.tool
 
 import dev.langchain4j.service.SystemMessage
 import org.goafabric.llm.config.Assistant

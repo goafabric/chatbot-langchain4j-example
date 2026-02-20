@@ -32,8 +32,8 @@ class RagConfiguration(private val dataSource: HikariDataSource) {
     @Bean
     fun ragBot(chatModel: ChatModel?): Assistant? {
         val textSegments = createTexSegments(
-            mutableListOf( //"doc/story-about-happy-carrot.pdf"
-                "doc/biography-of-john-doe.txt"
+            mutableListOf( "doc/story-about-happy-carrot.pdf"
+                //"doc/biography-of-john-doe.txt"
             )
         )
 

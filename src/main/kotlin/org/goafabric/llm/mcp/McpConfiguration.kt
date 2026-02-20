@@ -22,9 +22,9 @@ class McpConfiguration {
     fun mcpBot(model: ChatModel?): Assistant? {
         val transport: McpTransport? = StdioMcpTransport.Builder()
             .command(
-                mutableListOf<String?>( //"npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads/architecture-decission-records"
+                mutableListOf<String?>( "npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/andreas/Downloads"
                     //"npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://postgres:postgres@localhost:5432/postgres"
-                    "npx", "-y", "kubernetes-mcp-server@latest" //"k8sgpt", "serve", "--mcp", "--backend", "ollama"
+                    //"npx", "-y", "kubernetes-mcp-server@latest" //"k8sgpt", "serve", "--mcp", "--backend", "ollama"
                 )
             )
             .logEvents(true)

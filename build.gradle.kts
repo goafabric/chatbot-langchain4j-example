@@ -38,8 +38,8 @@ dependencies {
     }
 }
 
-val langchain4JVersion = "1.10.0"
-val langchain4JBetaVersion = "1.10.0-beta18"
+val langchain4JVersion = "1.11.0"
+val langchain4JBetaVersion = "1.11.0-beta19"
 
 dependencies {
     //web

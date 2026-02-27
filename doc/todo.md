@@ -1,3 +1,4 @@
 - Ops / k8sypt
 - https://tribuo.org/
 - observation server or this one as mcp service: https://github.com/langchain4j/langchain4j/commit/289741120365035818bf82530f6224cc735444b1
+- multiple agents (plan, code, review) in opencode

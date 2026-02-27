@@ -1,3 +1,3 @@
-- Agent
 - Ops / k8sypt
 - https://tribuo.org/
+- observation server or this one as mcp service

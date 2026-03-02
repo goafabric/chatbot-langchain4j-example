@@ -16,7 +16,7 @@ class LanguageModelConfiguration {
         return OpenAiChatModel.builder().apiKey("")
             .baseUrl("http://localhost:11434/v1")
             .modelName("gpt-oss:20b")
-            .timeout(Duration.ofSeconds(30)).temperature(0.0)
+            .timeout(Duration.ofSeconds(60)).temperature(0.0)
             .build()
     }
 
@@ -25,7 +25,7 @@ class LanguageModelConfiguration {
     fun chatModelOllama(): ChatModel? {
         return OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("llama3.1:8b")
+            .modelName("llama3.1")
             .timeout(Duration.ofSeconds(30)).temperature(0.0)
             .build()
     }

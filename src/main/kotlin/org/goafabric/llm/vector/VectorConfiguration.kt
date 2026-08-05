@@ -1,0 +1,68 @@
+package org.goafabric.llm.vector
+
+import dev.langchain4j.data.segment.TextSegment
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel
+import dev.langchain4j.store.embedding.EmbeddingMatch
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore
+import jakarta.annotation.PostConstruct
+import org.springframework.context.annotation.Profile
+import org.springframework.stereotype.Component
+
+
+@Component
+@Profile("vector")
+class VectorConfiguration {
+    private val embeddingStore = InMemoryEmbeddingStore<TextSegment>()
+    private val embeddingModel = AllMiniLmL6V2EmbeddingModel()
+
+    data class ChargeItem(
+        var code: String,
+        var display: String,
+        var description: String
+    )
+
+    @PostConstruct
+    fun vectorSearch() {
+        createEmbeddings()
+        search("Telefonische Beratung")
+        search("Internistische Anamese")
+        //search("Dorsale Anamese")
+    }
+
+    private fun createEmbeddings(
+    ) {
+        createChargeItems().forEach { charge ->
+            val metadata = dev.langchain4j.data.document.Metadata()
+            metadata.put("goaeNumber", charge.code)
+
+            val segment = TextSegment.from(
+                "GOÄ ${charge.code}\nTitle: ${charge.display}\nDescription: ${charge.description}", metadata)
+            val embedding1 = embeddingModel.embed(segment).content()
+            embeddingStore.add(embedding1, segment)
+        }
+    }
+
+    private fun createChargeItems(): List<ChargeItem> {
+        val chargeItem1 = ChargeItem(code = "1", display = "Beratung", "Ärztliche Beratung eines Patienten, auch telefonisch.")
+        val chargeItem2 = ChargeItem(code = "5", display = "Symptombezogene Untersuchung", "Symptombezogene Untersuchung eines Organs oder Organsystems.")
+        val chargeItem3 = ChargeItem(code = "7", display = "Vollständige Untersuchung", "Vollständige körperliche Untersuchung mindestens eines Organsystems.")
+        val chargeItem4 = ChargeItem(code = "70", display = "Kurzes Gutachten", "Kurzes schriftliches Gutachten oder Attest.")
+        val chargeItem5 = ChargeItem(code = "75", display = "Ausführlicher Befundbericht", "Ausführlicher schriftlicher Krankheits- und Befundbericht")
+        val chargeItem6 = ChargeItem(code = "55", display = "Rücken Untersuchung", "Symptombezogene Untersuchung des Rückens")
+        return listOf<ChargeItem>(chargeItem1 ,chargeItem2, chargeItem3, chargeItem4, chargeItem5, chargeItem6)
+    }
+
+    private fun search(query: String): String? {
+        val queryEmbedding = embeddingModel.embed(query).content()
+        val embeddingSearchRequest = EmbeddingSearchRequest.builder()
+            .queryEmbedding(queryEmbedding)
+            .maxResults(2)
+            .build()
+        val matches: MutableList<EmbeddingMatch<TextSegment>> = embeddingStore.search(embeddingSearchRequest).matches()
+        val embeddingMatch: EmbeddingMatch<TextSegment> = matches[0]
+        val result = (embeddingMatch.embedded().text())
+        println("Search $query =>\n\n$result\n")
+        return result
+    }
+}

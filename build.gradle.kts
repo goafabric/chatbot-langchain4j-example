@@ -53,6 +53,7 @@ dependencies {
 
     //rag
     implementation("dev.langchain4j:langchain4j-embeddings-bge-small-en-v15-q:${langchain4JBetaVersion}")
+    implementation("dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:${langchain4JBetaVersion}")
     implementation("dev.langchain4j:langchain4j-document-parser-apache-tika:${langchain4JBetaVersion}")
     implementation("dev.langchain4j:langchain4j-pgvector:${langchain4JBetaVersion}")
 

@@ -19,7 +19,8 @@ class VectorConfiguration {
     data class ChargeItem(
         var code: String,
         var display: String,
-        var description: String
+        var description: String,
+        var price: Double
     )
 
     @PostConstruct
@@ -44,13 +45,12 @@ class VectorConfiguration {
     }
 
     private fun createChargeItems(): List<ChargeItem> {
-        val chargeItem1 = ChargeItem(code = "1", display = "Beratung", "Ärztliche Beratung eines Patienten, auch telefonisch.")
-        val chargeItem2 = ChargeItem(code = "5", display = "Symptombezogene Untersuchung", "Symptombezogene Untersuchung eines Organs oder Organsystems.")
-        val chargeItem3 = ChargeItem(code = "7", display = "Vollständige Untersuchung", "Vollständige körperliche Untersuchung mindestens eines Organsystems.")
-        val chargeItem4 = ChargeItem(code = "70", display = "Kurzes Gutachten", "Kurzes schriftliches Gutachten oder Attest.")
-        val chargeItem5 = ChargeItem(code = "75", display = "Ausführlicher Befundbericht", "Ausführlicher schriftlicher Krankheits- und Befundbericht")
-        val chargeItem6 = ChargeItem(code = "55", display = "Rücken Untersuchung", "Symptombezogene Untersuchung des Rückens")
-        return listOf<ChargeItem>(chargeItem1 ,chargeItem2, chargeItem3, chargeItem4, chargeItem5, chargeItem6)
+        val chargeItem1 = ChargeItem(code = "1", display = "Beratung", "Ärztliche Beratung eines Patienten, auch telefonisch.", price = 4.66)
+        val chargeItem2 = ChargeItem(code = "5", display = "Symptombezogene Untersuchung", "Symptombezogene Untersuchung eines Organs oder Organsystems.", price = 4.66)
+        val chargeItem3 = ChargeItem(code = "8", display = "Ganzkörperstatus", "Untersuchung zur Erhebung des Ganzkörperstatus, gegebenenfalls einschließlich Dokumentation", price = 15.15)
+        val chargeItem4 = ChargeItem(code = "70", display = "Kurzes Gutachten", "Kurzes schriftliches Gutachten oder Attest.", price = 2.33)
+        val chargeItem5 = ChargeItem(code = "75", display = "Ausführlicher Befundbericht", "Ausführlicher schriftlicher Krankheits- und Befundbericht", price = 7.55)
+        return listOf<ChargeItem>(chargeItem1 ,chargeItem2, chargeItem3, chargeItem4, chargeItem5)
     }
 
     private fun search(query: String): String? {

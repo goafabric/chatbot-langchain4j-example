@@ -62,6 +62,15 @@ class TvPrice {
         return trainer.train(trainData)
     }
 
+    private fun predict(model: Model<Label>, month: Double, initial: Double): String {
+        val example = ArrayExample(
+            labelFactory.unknownOutput,
+            arrayOf("month", "initial"),
+            doubleArrayOf(month, initial)
+        )
+        return model.predict(example).output.label
+    }
+
     private fun scoreMe(source: DataSource<Label>) {
         // train_test_split(values, target, test_size=0.4)
         val splitter = TrainTestSplitter(source, /* train fraction */ 0.6, /* RNG seed */ 1L)
@@ -78,12 +87,5 @@ class TvPrice {
     private fun score(model: Model<Label>, dataset: Dataset<Label>): Double =
         dataset.count { model.predict(it).output.label == it.output.label }.toDouble() / dataset.size()
 
-    private fun predict(model: Model<Label>, month: Double, initial: Double): String {
-        val example = ArrayExample(
-            labelFactory.unknownOutput,
-            arrayOf("month", "initial"),
-            doubleArrayOf(month, initial)
-        )
-        return model.predict(example).output.label
-    }
+
 }

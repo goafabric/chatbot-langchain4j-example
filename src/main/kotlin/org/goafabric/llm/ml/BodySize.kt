@@ -19,10 +19,14 @@ import org.tribuo.evaluation.TrainTestSplitter
 import org.tribuo.impl.ArrayExample
 import org.tribuo.math.distance.DistanceType
 import org.tribuo.math.neighbour.NeighboursQueryFactoryType
+import java.nio.file.Path
+import kotlin.io.path.createDirectories
 
 /**
  * Tribuo port of the scikit-learn body size example:
  * read csv -> train/test split -> KNeighborsClassifier(1) -> score -> predict.
+ *
+ * The fitted model is written out as protobuf (Tribuo 4.3 style) after training.
  */
 @Component
 @Profile("ml-body")
@@ -30,16 +34,22 @@ class BodySize {
 
     private val labelFactory = LabelFactory()
 
+    private val modelFile: Path = Path.of("build", "ml", "body_size-knn.tribuo")
+
     @PostConstruct
     fun init() {
         scoreMe(readFile())
 
-        // the scoring model above only sees 60% of the 15 rows, so a 1-NN lookup of a size that was
-        // split away ends in a coin flip (e.g. 140 is equally far from 130 child and 150 adult).
-        // for the real prediction we therefore fit on the complete dataset.
         val classifier = trainMe(MutableDataset(readFile()))
+        save(classifier)
 
         println("predict: " + predict(classifier, 140.0))
+    }
+
+    private fun save(model: Model<Label>) {
+        modelFile.parent.createDirectories()
+        model.serializeToFile(modelFile)
+        println("saved model to $modelFile")
     }
 
     private fun readFile(): DataSource<Label> =

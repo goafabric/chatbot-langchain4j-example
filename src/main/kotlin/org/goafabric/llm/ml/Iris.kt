@@ -18,7 +18,7 @@ import java.nio.file.Paths
 
 
 @Component
-@Profile("ml")
+@Profile("ml-iris")
 class Iris {
 
     @PostConstruct

@@ -13,7 +13,7 @@ logging.level.org.goafabric: "INFO"
 logging.level.dev.langchain4j: "DEBUG"
 logging.level.dev.ai4j.openai4j: "DEBUG"
 
-spring.profiles.active: "ml"
+spring.profiles.active: "ml-body"
 
 #spring.profiles.active: "vector"
 

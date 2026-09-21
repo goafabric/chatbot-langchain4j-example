@@ -32,10 +32,14 @@ class BodySize {
 
     @PostConstruct
     fun init() {
-        val data = readFile()
-        val classifier = trainMe(data)
+        scoreMe(readFile())
 
-        println("predict: " + predict(classifier, 180.0))
+        // the scoring model above only sees 60% of the 15 rows, so a 1-NN lookup of a size that was
+        // split away ends in a coin flip (e.g. 140 is equally far from 130 child and 150 adult).
+        // for the real prediction we therefore fit on the complete dataset.
+        val classifier = trainMe(MutableDataset(readFile()))
+
+        println("predict: " + predict(classifier, 140.0))
     }
 
     private fun readFile(): DataSource<Label> =
@@ -44,13 +48,8 @@ class BodySize {
             "type" /* response / target column, the remaining column 'size' is the feature */
         )
 
-    private fun trainMe(source: DataSource<Label>): Model<Label> {
-        // train_test_split(values, target, test_size=0.4)
-        val splitter = TrainTestSplitter(source, /* train fraction */ 0.6, /* RNG seed */ 1L)
-        val trainData = MutableDataset(splitter.train)
-        val testData = MutableDataset(splitter.test)
-
-        // neighbors.KNeighborsClassifier(1) + clf.fit(...)
+    /** neighbors.KNeighborsClassifier(1) + clf.fit(...) */
+    private fun trainMe(trainData: Dataset<Label>): Model<Label> {
         val trainer = KNNTrainer<Label>(
             /* k */ 1,
             DistanceType.L2.distance,
@@ -59,12 +58,20 @@ class BodySize {
             KNNModel.Backend.THREADPOOL,
             NeighboursQueryFactoryType.BRUTE_FORCE
         )
-        val model = trainer.train(trainData)
+        return trainer.train(trainData)
+    }
+
+    private fun scoreMe(source: DataSource<Label>) {
+        // train_test_split(values, target, test_size=0.4)
+        val splitter = TrainTestSplitter(source, /* train fraction */ 0.6, /* RNG seed */ 1L)
+        val trainData = MutableDataset(splitter.train)
+        val testData = MutableDataset(splitter.test)
+
+        val model = trainMe(trainData)
 
         // clf.score(...)
         println("normal train score " + score(model, trainData))
         println("normal test score " + score(model, testData))
-        return model
     }
 
     private fun score(model: Model<Label>, dataset: Dataset<Label>): Double =
